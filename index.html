@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chord &amp; Numeral — Praise &amp; Glorify</title>
+<meta name="description" content="Hear the seven chords of a key and learn them by their Roman numeral. An ear-training plate for the Praise &amp; Glorify accompanist intensive at St Paul's Anglican Kogarah.">
+
+<!-- installable web app -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0c1321">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Chord &amp; Numeral">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+<!-- link previews -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chord &amp; Numeral">
+<meta property="og:description" content="Seven degrees · One key · Learned by ear. Praise &amp; Glorify — St Paul's Anglican Kogarah.">
+<meta property="og:image" content="https://w69gjcn72j-dotcom.github.io/praise-and-glorify/share-card.png">
+<meta property="og:url" content="https://w69gjcn72j-dotcom.github.io/praise-and-glorify/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chord &amp; Numeral">
+<meta name="twitter:description" content="Seven degrees · One key · Learned by ear.">
+<meta name="twitter:image" content="https://w69gjcn72j-dotcom.github.io/praise-and-glorify/share-card.png">
+
+<style>
+/* ============================================================
+   TEMPERED GROUND
+   Praise & Glorify — St Paul's Anglican Kogarah
+   Three voices only: ground, bone, brass.
+   ============================================================ */
+:root{
+  --ground:#0c1321;
+  --bone:#f2ecdf;
+  --bone-dim:#9d9a92;
+  --brass:#d1a24c;
+  --brass-deep:#a8853f;
+  --rule:rgba(242,236,223,0.14);
+  --rule-soft:rgba(242,236,223,0.08);
+
+  --display:"Cormorant Garamond","Didot","Bodoni MT","Playfair Display",Garamond,Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,"SF Mono","Menlo","Roboto Mono","DejaVu Sans Mono","Courier New",monospace;
+
+  color-scheme:dark;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--ground)}
+body{
+  color:var(--bone);
+  font-family:var(--display);
+  font-size:19px;
+  line-height:1.5;
+  padding:calc(38px + env(safe-area-inset-top)) 32px calc(64px + env(safe-area-inset-bottom));
+  max-width:960px;
+  margin:0 auto;
+  position:relative;
+  min-height:100vh;
+  -webkit-text-size-adjust:100%;
+}
+@media(max-width:620px){ body{padding:calc(24px + env(safe-area-inset-top)) 18px calc(52px + env(safe-area-inset-bottom))} }
+
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(ellipse 120% 90% at 50% 42%, rgba(255,255,255,0.035) 0%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.42) 100%);
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+main{position:relative;z-index:3}
+
+/* --- the two registers --- */
+.mono{
+  font-family:var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  font-size:.82rem;
+  color:var(--bone-dim);
+  font-weight:400;
+}
+.mono.brass{color:var(--brass)}
+@media(max-width:620px){ .mono{font-size:.74rem;letter-spacing:.12em} }
+
+/* --- masthead --- */
+.plate-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding-bottom:11px;border-bottom:1px solid var(--rule);margin-bottom:34px;
+}
+.eyebrow{text-align:center;margin-bottom:20px}
+h1{
+  font-family:var(--display);
+  font-weight:300;
+  font-size:clamp(2.15rem,9.6vw,4rem);
+  letter-spacing:.2em;
+  text-indent:.2em;
+  text-align:center;
+  margin:0;
+  line-height:1.05;
+}
+h1 .amp{font-style:italic;letter-spacing:.04em;font-weight:400}
+.subrule{width:min(460px,74%);height:1px;background:var(--rule);margin:24px auto 16px}
+.subline{text-align:center;margin-bottom:44px}
+
+/* --- control band --- */
+.band{
+  display:flex;flex-wrap:wrap;align-items:center;gap:22px 36px;
+  padding:20px 0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);
+  margin-bottom:46px;
+}
+.ctrl{display:flex;align-items:baseline;gap:13px}
+select{
+  appearance:none;-webkit-appearance:none;
+  background:transparent;color:var(--bone);
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;font-size:.94rem;
+  border:0;border-bottom:1px solid var(--rule);
+  padding:6px 24px 6px 2px;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--brass-deep) 50%),linear-gradient(135deg,var(--brass-deep) 50%,transparent 50%);
+  background-position:calc(100% - 10px) 58%,calc(100% - 5px) 58%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;
+}
+select option{background:#111a2b;color:var(--bone)}
+.chip{
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.11em;font-size:.8rem;
+  color:var(--bone-dim);border:1px solid var(--rule);background:transparent;
+  padding:9px 15px;cursor:pointer;user-select:none;transition:.15s;
+}
+.chip.on{color:var(--brass);border-color:var(--brass-deep)}
+.chipset{display:flex;gap:9px;flex-wrap:wrap}
+
+/* ============================================================
+   THE PLATE — repetition under an envelope
+   ============================================================ */
+.field{position:relative;height:246px}
+@media(max-width:620px){ .field{height:194px} }
+.ticks{position:absolute;inset:0;pointer-events:none}
+.tick{position:absolute;bottom:0;width:1px;background:var(--rule)}
+.degrees{position:absolute;inset:0;display:grid;grid-template-columns:repeat(7,1fr);align-items:end}
+.deg{
+  background:none;border:0;padding:0;margin:0;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  cursor:pointer;font:inherit;color:inherit;transition:opacity .18s;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--brass-deep);margin-bottom:6px;transition:.18s}
+.stroke{width:4px;background:var(--brass-deep);transition:.18s}
+.deg[data-q="m"] .stroke{width:2px}
+.deg[data-q="dim"] .stroke{
+  width:2px;
+  background:repeating-linear-gradient(to bottom,var(--brass-deep) 0 6px,transparent 6px 11px);
+}
+.deg.lit .stroke,.deg.lit .dot{background:var(--brass);box-shadow:0 0 16px rgba(209,162,76,.5)}
+.deg.lit[data-q="dim"] .stroke{background:repeating-linear-gradient(to bottom,var(--brass) 0 6px,transparent 6px 11px)}
+.deg.lit .dot{transform:scale(1.9)}
+.deg.dimmed{opacity:.18}
+.deg.shake{animation:sh .34s ease}
+@keyframes sh{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+.baseline{height:1px;background:var(--rule)}
+.labels{display:grid;grid-template-columns:repeat(7,1fr);padding-top:15px}
+.lab{text-align:center;cursor:pointer;user-select:none;padding:0 1px}
+.lab .num{
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.03em;
+  font-size:clamp(.85rem,4.4vw,1.38rem);color:var(--brass);display:block;white-space:nowrap;
+}
+.lab.lit .num{color:var(--bone)}
+.lab .nm{
+  font-family:var(--display);font-size:clamp(.85rem,4.2vw,1.32rem);
+  color:var(--bone);display:block;margin-top:6px;opacity:.9;white-space:nowrap;
+}
+.lab .nt{
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.01em;
+  font-size:clamp(.55rem,2.6vw,.8rem);color:var(--bone-dim);display:block;margin-top:5px;white-space:nowrap;
+}
+.veil{visibility:hidden}
+@media(max-width:360px){ body{padding-left:13px;padding-right:13px} }
+
+/* --- readout --- */
+.readout{
+  margin-top:38px;padding:20px 0;
+  border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);
+  min-height:102px;
+}
+.readout .status{margin-bottom:11px}
+.readout .gloss{
+  font-family:var(--display);font-style:italic;
+  font-size:clamp(1.15rem,4.4vw,1.34rem);
+  color:var(--bone);opacity:.92;line-height:1.42;
+}
+
+/* --- sections --- */
+.section{margin-top:50px}
+.section-title{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.section-title .line{flex:1;height:1px;background:var(--rule-soft)}
+.acts{display:flex;flex-wrap:wrap;gap:11px}
+button.act{
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;font-size:.86rem;
+  color:var(--bone-dim);background:transparent;border:1px solid var(--rule);
+  padding:15px 18px;cursor:pointer;transition:.15s;flex:1 1 auto;min-width:150px;
+}
+button.act:hover{color:var(--bone)}
+button.act.primary{color:var(--brass);border-color:var(--brass-deep)}
+button.act:disabled{opacity:.3;cursor:default}
+.scoreline{
+  font-family:var(--mono);letter-spacing:.12em;font-size:.86rem;
+  color:var(--bone-dim);text-transform:uppercase;
+}
+.scoreline b{color:var(--brass);font-weight:400}
+
+/* --- colophon --- */
+.colophon{margin-top:70px;padding-top:30px;border-top:1px solid var(--rule);text-align:center}
+.quote{
+  font-family:var(--display);font-style:italic;
+  font-size:clamp(1.24rem,4.8vw,1.46rem);
+  color:var(--bone);opacity:.94;margin:0 0 14px;
+}
+.wordmark{margin-top:30px}
+
+details{margin-top:44px;border-top:1px solid var(--rule-soft);padding-top:16px}
+summary{
+  cursor:pointer;list-style:none;
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.15em;font-size:.82rem;
+  color:var(--bone-dim);padding:8px 0;
+}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--brass)}
+details[open] summary::before{content:"− "}
+.notes{font-size:1.08rem;color:var(--bone);opacity:.85;padding-left:20px;line-height:1.55}
+.notes li{margin-bottom:13px}
+.notes b{font-weight:600;opacity:1}
+</style>
+</head>
+<body>
+<main>
+
+<div class="plate-head">
+  <span class="mono">St Paul's Kogarah</span>
+  <span class="mono">MMXXVI</span>
+</div>
+
+<div class="eyebrow"><span class="mono brass">Music Ministry &nbsp;·&nbsp; Praise &amp; Glorify</span></div>
+<h1>CHORD <span class="amp">&amp;</span> NUMERAL</h1>
+<div class="subrule"></div>
+<div class="subline"><span class="mono">Seven degrees &nbsp;·&nbsp; One key &nbsp;·&nbsp; Learned by ear</span></div>
+
+<div class="band">
+  <div class="ctrl">
+    <span class="mono">Key</span>
+    <select id="keysel"></select>
+  </div>
+  <div class="ctrl">
+    <span class="mono">Voicing</span>
+    <select id="soundsel">
+      <option value="block">Block</option>
+      <option value="strum">Strum</option>
+      <option value="broken">Broken</option>
+    </select>
+  </div>
+  <div class="ctrl">
+    <span class="mono">Show</span>
+    <div class="chipset">
+      <button class="chip on" data-toggle="names">Names</button>
+      <button class="chip on" data-toggle="notes">Notes</button>
+    </div>
+  </div>
+</div>
+
+<div class="plate">
+  <div class="field">
+    <div class="ticks" id="ticks"></div>
+    <div class="degrees" id="degrees"></div>
+  </div>
+  <div class="baseline"></div>
+  <div class="labels" id="labels"></div>
+</div>
+
+<div class="readout">
+  <div class="status mono" id="status">Tap a degree</div>
+  <div class="gloss" id="gloss">Each stroke is one chord of the key. The numeral names its office, not its letter — so the same lesson holds in every key.</div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="mono">Plate II &nbsp;·&nbsp; Progressions</span><span class="line"></span></div>
+  <div class="acts">
+    <button class="act" data-prog="0,4,5,3">I · V · vi · IV</button>
+    <button class="act" data-prog="0,3,4,0">I · IV · V · I</button>
+    <button class="act" data-prog="1,4,0">ii · V · I</button>
+    <button class="act" data-prog="5,3,0,4">vi · IV · I · V</button>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="mono">Plate III &nbsp;·&nbsp; Ear Training</span><span class="line"></span></div>
+  <div class="band" style="margin-bottom:22px">
+    <div class="ctrl">
+      <span class="mono">Level</span>
+      <div class="chipset" id="levels">
+        <button class="chip on" data-level="0">I IV V</button>
+        <button class="chip" data-level="1">+ ii vi</button>
+        <button class="chip" data-level="2">All seven</button>
+      </div>
+    </div>
+    <div class="ctrl"><span class="scoreline" id="score">Score <b>0</b> / 0</span></div>
+  </div>
+  <div class="acts">
+    <button class="act primary" id="startBtn">Begin</button>
+    <button class="act" id="replayBtn" disabled>Hear again</button>
+    <button class="act" id="revealBtn" disabled>Reveal</button>
+  </div>
+</div>
+
+<div class="colophon">
+  <p class="quote">“Singing to God with gratitude in your hearts.”</p>
+  <span class="mono brass">Colossians III · XVI</span>
+  <div class="wordmark"><span class="mono">St Paul's Anglican Kogarah &nbsp;·&nbsp; Praise &amp; Glorify &nbsp;·&nbsp; Rev. David Yung</span></div>
+</div>
+
+<details>
+  <summary>Teaching notes</summary>
+  <ul class="notes">
+    <li><b>Why numerals.</b> A numeral names a chord by its office in the key, not its letter. I–V–vi–IV is one shape in every key — so a song in G and a song in D become the same lesson.</li>
+    <li><b>Reading the plate.</b> Capitals are major (I, IV, V), lowercase minor (ii, iii, vi), lowercase with ° diminished (vii°). Stroke weight follows: heavy major, fine minor, broken diminished. Height rises with the degree.</li>
+    <li><b>Start here.</b> Hide the names, play I, IV and V only, and let them hear <i>home / away / tension</i> before the minors are introduced.</li>
+    <li><b>The transfer test.</b> Once C is secure, change the key to G and repeat. If the numerals still hold, the idea has landed — that is the whole point of Week 4.</li>
+    <li><b>On a phone.</b> Add it to the homescreen and it opens like an app and works with no signal. On iPhone the first tap unlocks audio, and the silent switch must be off.</li>
+  </ul>
+</details>
+
+</main>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------------- music data ---------------- */
+var KEYS = [
+  { name:"C",  root:60, letters:["C","D","E","F","G","A","B"] },
+  { name:"G",  root:55, letters:["G","A","B","C","D","E","F#"] },
+  { name:"D",  root:62, letters:["D","E","F#","G","A","B","C#"] },
+  { name:"A",  root:57, letters:["A","B","C#","D","E","F#","G#"] },
+  { name:"E",  root:64, letters:["E","F#","G#","A","B","C#","D#"] },
+  { name:"F",  root:65, letters:["F","G","A","Bb","C","D","E"] },
+  { name:"Bb", root:58, letters:["Bb","C","D","Eb","F","G","A"] },
+  { name:"Eb", root:63, letters:["Eb","F","G","Ab","Bb","C","D"] }
+];
+var SCALE    = [0,2,4,5,7,9,11];
+var NUMERALS = ["I","ii","iii","IV","V","vi","vii°"];
+var QUALITY  = ["","m","m","","","m","dim"];
+var ROLE = [
+  "Home. Rest. Everything resolves here.",
+  "A gentle lead-in — almost always walking towards V.",
+  "Soft and in between; it shares two notes with I.",
+  "Away from home, warm and open. The lift.",
+  "Tension. It leans hard on I and wants to fall back.",
+  "The shadowed relative of I — the same notes, a different centre.",
+  "Unstable and edged. Rarely rested upon."
+];
+var LEVELS = [[0,3,4],[0,1,3,4,5],[0,1,2,3,4,5,6]];
+
+/* ---------------- audio ---------------- */
+var ctx=null, master=null;
+
+function initAudio(){
+  if(ctx) return;
+  var AC = window.AudioContext || window.webkitAudioContext;
+  ctx = new AC();
+  master = ctx.createGain();
+  master.gain.value = 0.9;
+
+  var lp = ctx.createBiquadFilter();
+  lp.type = "lowpass";
+  lp.frequency.value = 4200;
+
+  var conv = ctx.createConvolver();
+  var len = Math.floor(ctx.sampleRate * 1.6);
+  var buf = ctx.createBuffer(2, len, ctx.sampleRate);
+  for(var c=0;c<2;c++){
+    var d = buf.getChannelData(c);
+    for(var i=0;i<len;i++){ d[i] = (Math.random()*2-1) * Math.pow(1 - i/len, 2.6); }
+  }
+  conv.buffer = buf;
+  var wet = ctx.createGain();
+  wet.gain.value = 0.20;
+
+  master.connect(lp);
+  lp.connect(ctx.destination);
+  lp.connect(wet);
+  wet.connect(conv);
+  conv.connect(ctx.destination);
+}
+function resume(){
+  initAudio();
+  if(ctx.state === "suspended"){ ctx.resume(); }
+}
+function freq(m){ return 440 * Math.pow(2,(m-69)/12); }
+
+function voice(midi, when, dur, vol){
+  var f = freq(midi);
+  var g = ctx.createGain();
+  g.connect(master);
+  g.gain.setValueAtTime(0.0001, when);
+  g.gain.linearRampToValueAtTime(vol, when + 0.012);
+  g.gain.exponentialRampToValueAtTime(vol*0.35, when + 0.35);
+  g.gain.exponentialRampToValueAtTime(0.0001, when + dur);
+  var specs = [
+    { type:"triangle", mult:1, gain:1.00, detune:0 },
+    { type:"sine",     mult:2, gain:0.28, detune:3 },
+    { type:"sine",     mult:3, gain:0.10, detune:-4 }
+  ];
+  for(var i=0;i<specs.length;i++){
+    var s = specs[i];
+    var o = ctx.createOscillator();
+    o.type = s.type;
+    o.frequency.value = f * s.mult;
+    o.detune.value = s.detune;
+    var og = ctx.createGain();
+    og.gain.value = s.gain;
+    o.connect(og); og.connect(g);
+    o.start(when);
+    o.stop(when + dur + 0.1);
+  }
+}
+
+/* ---------------- chords ---------------- */
+function keyObj(){ return KEYS[document.getElementById("keysel").selectedIndex]; }
+
+function chordNotes(d){
+  var k = keyObj(), out = [];
+  for(var i=0;i<3;i++){
+    var deg = d + i*2;
+    out.push(k.root + SCALE[deg % 7] + 12*Math.floor(deg/7));
+  }
+  while(out[2] > k.root + 16){ out = out.map(function(n){ return n-12; }); }
+  return { bass: out[0]-12, triad: out };
+}
+function noteNames(d){
+  var L = keyObj().letters;
+  return [ L[d%7], L[(d+2)%7], L[(d+4)%7] ];
+}
+function chordName(d){
+  var L = keyObj().letters, q = QUALITY[d];
+  return (q === "dim") ? L[d] + "°" : L[d] + q;
+}
+
+function playChord(d, when, style){
+  resume();
+  when = when || ctx.currentTime + 0.02;
+  style = style || document.getElementById("soundsel").value;
+  var n = chordNotes(d), dur = 2.4;
+  voice(n.bass, when, dur, 0.16);
+  if(style === "broken"){
+    var seq = [n.triad[0], n.triad[1], n.triad[2], n.triad[1]];
+    for(var i=0;i<seq.length;i++){ voice(seq[i], when + i*0.16, dur - i*0.12, 0.15); }
+  } else {
+    var spread = (style === "strum") ? 0.055 : 0.006;
+    for(var j=0;j<n.triad.length;j++){ voice(n.triad[j], when + j*spread, dur, 0.15); }
+  }
+}
+
+/* ---------------- the plate ---------------- */
+var degWrap = document.getElementById("degrees");
+var labWrap = document.getElementById("labels");
+var show = { names:true, notes:true };
+
+function buildTicks(){
+  var box = document.getElementById("ticks"), html = "", N = 97;
+  for(var i=0;i<N;i++){
+    var x = i/(N-1);
+    var env = Math.exp(-0.5 * Math.pow((x-0.5)/0.27, 2));
+    var h = 6 + 50*env;
+    html += '<i class="tick" style="left:' + (x*100).toFixed(3) + '%;height:' + h.toFixed(2) + '%"></i>';
+  }
+  box.innerHTML = html;
+}
+
+function buildKeySelect(){
+  var sel = document.getElementById("keysel");
+  for(var i=0;i<KEYS.length;i++){
+    var o = document.createElement("option");
+    o.value = KEYS[i].name;
+    o.textContent = KEYS[i].name + " major";
+    sel.appendChild(o);
+  }
+}
+
+function buildPlate(){
+  degWrap.innerHTML = "";
+  labWrap.innerHTML = "";
+  for(var d=0; d<7; d++){
+    (function(deg){
+      var h = 46 + 54*(deg/6);
+      var b = document.createElement("button");
+      b.className = "deg";
+      b.setAttribute("data-deg", deg);
+      b.setAttribute("data-q", QUALITY[deg] || "M");
+      b.setAttribute("aria-label", NUMERALS[deg] + " " + chordName(deg));
+      b.innerHTML = '<span class="dot"></span><span class="stroke" style="height:' + h.toFixed(1) + '%"></span>';
+      b.addEventListener("click", function(){ onTap(deg); });
+      degWrap.appendChild(b);
+
+      var l = document.createElement("div");
+      l.className = "lab";
+      l.setAttribute("data-deg", deg);
+      l.innerHTML =
+        '<span class="num">' + NUMERALS[deg] + '</span>' +
+        '<span class="nm' + (show.names?"":" veil") + '">' + chordName(deg) + '</span>' +
+        '<span class="nt' + (show.notes?"":" veil") + '">' + noteNames(deg).join(" ") + '</span>';
+      l.addEventListener("click", function(){ onTap(deg); });
+      labWrap.appendChild(l);
+    })(d);
+  }
+}
+
+function cells(deg){
+  return [ degWrap.querySelector('[data-deg="'+deg+'"]'), labWrap.querySelector('[data-deg="'+deg+'"]') ];
+}
+function mark(deg, cls, ms){
+  var c = cells(deg);
+  c[0].classList.add(cls); c[1].classList.add(cls);
+  setTimeout(function(){ c[0].classList.remove(cls); c[1].classList.remove(cls); }, ms||700);
+}
+function setReadout(status, gloss){
+  document.getElementById("status").textContent = status;
+  document.getElementById("gloss").innerHTML = gloss;
+}
+
+function onTap(deg){
+  if(quiz.active && quiz.answer !== null){ return answer(deg); }
+  playChord(deg);
+  mark(deg, "lit", 620);
+  setReadout(NUMERALS[deg] + " · " + chordName(deg) + " · " + noteNames(deg).join(" "), ROLE[deg]);
+}
+
+function playProgression(degs){
+  resume();
+  var t = ctx.currentTime + 0.05;
+  var names = degs.map(function(d){ return chordName(d); }).join("  ·  ");
+  setReadout(degs.map(function(d){ return NUMERALS[d]; }).join(" · "), names + " — in " + keyObj().name + " major.");
+  for(var i=0;i<degs.length;i++){
+    (function(deg, at, idx){
+      playChord(deg, at);
+      setTimeout(function(){ mark(deg, "lit", 760); }, idx*900);
+    })(degs[i], t + i*0.9, i);
+  }
+}
+
+/* ---------------- ear training ---------------- */
+var quiz = { active:false, answer:null, score:0, total:0, tries:0, level:0 };
+
+function updateScore(){
+  document.getElementById("score").innerHTML = "Score <b>" + quiz.score + "</b> / " + quiz.total;
+}
+function playQuestion(){
+  resume();
+  var t = ctx.currentTime + 0.05;
+  playChord(0, t);
+  mark(0, "lit", 700);
+  playChord(quiz.answer, t + 1.15);
+}
+function nextQuestion(){
+  var pool = LEVELS[quiz.level];
+  quiz.answer = pool[Math.floor(Math.random()*pool.length)];
+  quiz.tries = 0;
+  setReadout("Listening", "Home was sounded first. Which degree followed it?");
+  document.getElementById("replayBtn").disabled = false;
+  document.getElementById("revealBtn").disabled = false;
+  playQuestion();
+}
+function answer(deg){
+  if(deg === quiz.answer){
+    quiz.score++; quiz.total++; updateScore();
+    mark(deg, "lit", 1000);
+    playChord(deg);
+    setReadout("Correct · " + NUMERALS[deg] + " · " + chordName(deg), ROLE[deg]);
+    quiz.answer = null;
+    setTimeout(function(){ if(quiz.active) nextQuestion(); }, 1900);
+  } else {
+    quiz.tries++;
+    mark(deg, "shake", 380);
+    mark(deg, "dimmed", 520);
+    playChord(deg);
+    if(quiz.tries >= 2){
+      quiz.total++; updateScore();
+      var a = quiz.answer; quiz.answer = null;
+      mark(a, "lit", 1500);
+      setReadout("It was " + NUMERALS[a] + " · " + chordName(a), ROLE[a]);
+      setTimeout(function(){ if(quiz.active) nextQuestion(); }, 2400);
+    } else {
+      setReadout("Not that one", "Listen once more — is it resting, leaning, or lifting away?");
+      setTimeout(playQuestion, 760);
+    }
+  }
+}
+function revealAnswer(){
+  if(quiz.answer === null) return;
+  var a = quiz.answer;
+  quiz.total++; quiz.answer = null; updateScore();
+  mark(a, "lit", 1500);
+  setReadout("Revealed · " + NUMERALS[a] + " · " + chordName(a), ROLE[a]);
+  setTimeout(function(){ if(quiz.active) nextQuestion(); }, 2200);
+}
+function startQuiz(){
+  resume();
+  quiz.active = true; quiz.score = 0; quiz.total = 0;
+  updateScore();
+  document.getElementById("startBtn").textContent = "Halt";
+  nextQuestion();
+}
+function stopQuiz(){
+  quiz.active = false; quiz.answer = null;
+  document.getElementById("startBtn").textContent = "Begin";
+  document.getElementById("replayBtn").disabled = true;
+  document.getElementById("revealBtn").disabled = true;
+  setReadout("Halted", "Tap any degree to explore the key freely.");
+}
+
+/* ---------------- wiring ---------------- */
+buildKeySelect();
+buildTicks();
+buildPlate();
+
+document.getElementById("keysel").addEventListener("change", function(){
+  buildPlate();
+  setReadout(keyObj().name + " major", "The letters have changed; the numerals have not. That is the whole idea.");
+});
+
+Array.prototype.forEach.call(document.querySelectorAll('.chip[data-toggle]'), function(c){
+  c.addEventListener("click", function(){
+    var k = c.getAttribute("data-toggle");
+    show[k] = !show[k];
+    c.classList.toggle("on", show[k]);
+    buildPlate();
+  });
+});
+
+Array.prototype.forEach.call(document.querySelectorAll('#levels .chip'), function(c){
+  c.addEventListener("click", function(){
+    Array.prototype.forEach.call(document.querySelectorAll('#levels .chip'), function(x){ x.classList.remove("on"); });
+    c.classList.add("on");
+    quiz.level = parseInt(c.getAttribute("data-level"), 10);
+  });
+});
+
+Array.prototype.forEach.call(document.querySelectorAll('button[data-prog]'), function(b){
+  b.addEventListener("click", function(){
+    playProgression(b.getAttribute("data-prog").split(",").map(Number));
+  });
+});
+
+document.getElementById("startBtn").addEventListener("click", function(){
+  if(quiz.active) stopQuiz(); else startQuiz();
+});
+document.getElementById("replayBtn").addEventListener("click", function(){
+  if(quiz.answer !== null) playQuestion();
+});
+document.getElementById("revealBtn").addEventListener("click", revealAnswer);
+
+document.addEventListener("touchstart", resume, { once:true });
+document.addEventListener("mousedown", resume, { once:true });
+
+/* offline: register the service worker when served over http(s) */
+if("serviceWorker" in navigator && location.protocol.indexOf("http") === 0){
+  window.addEventListener("load", function(){
+    navigator.serviceWorker.register("sw.js").catch(function(){});
+  });
+}
+
+})();
+</script>
+</body>
+</html>
