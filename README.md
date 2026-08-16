@@ -3,6 +3,8 @@
 An ear-training web app for the **Praise & Glorify** accompanist intensive, St Paul's Anglican Kogarah.
 No build step, no dependencies, no accounts. Every file here is static.
 
+**What it does:** twelve keys (eight major, four natural minor); the seven diatonic triads on a tick plate, each labelled with its Roman numeral; three tones (piano, soft electric piano, Karplus-Strong guitar) and three articulations (block, strum, broken); six progressions with a tempo control, metronome click and loop; a chord picker for any of the twelve roots major or minor, labelled with its numeral relative to the key; and a three-level ear-training quiz.
+
 ---
 
 ## Publish it (GitHub Pages, ~5 minutes)
@@ -50,7 +52,7 @@ It then opens full-screen with no browser bars, and works with no signal.
 
 ## When you change something
 
-Edit `index.html`, re-upload it, **and bump the version in `sw.js`** — change `chord-numeral-v1` to `-v2`. Without that, phones that already installed it keep serving the cached old copy.
+Edit `index.html`, re-upload it, **and bump the version in `sw.js`** — the line reads `chord-numeral-v2`; change it to `-v3`, and so on. Without that, phones that already installed it keep serving the cached old copy.
 
 ---
 

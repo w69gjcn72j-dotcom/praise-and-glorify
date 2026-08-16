@@ -63,6 +63,7 @@ body{
   -webkit-text-size-adjust:100%;
 }
 @media(max-width:620px){ body{padding:calc(24px + env(safe-area-inset-top)) 18px calc(52px + env(safe-area-inset-bottom))} }
+@media(max-width:360px){ body{padding-left:13px;padding-right:13px} }
 
 body::before{
   content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
@@ -93,20 +94,15 @@ main{position:relative;z-index:3}
 }
 .eyebrow{text-align:center;margin-bottom:20px}
 h1{
-  font-family:var(--display);
-  font-weight:300;
+  font-family:var(--display);font-weight:300;
   font-size:clamp(2.15rem,9.6vw,4rem);
-  letter-spacing:.2em;
-  text-indent:.2em;
-  text-align:center;
-  margin:0;
-  line-height:1.05;
+  letter-spacing:.2em;text-indent:.2em;text-align:center;margin:0;line-height:1.05;
 }
 h1 .amp{font-style:italic;letter-spacing:.04em;font-weight:400}
 .subrule{width:min(460px,74%);height:1px;background:var(--rule);margin:24px auto 16px}
 .subline{text-align:center;margin-bottom:44px}
 
-/* --- control band --- */
+/* --- control bands --- */
 .band{
   display:flex;flex-wrap:wrap;align-items:center;gap:22px 36px;
   padding:20px 0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);
@@ -123,7 +119,7 @@ select{
   background-position:calc(100% - 10px) 58%,calc(100% - 5px) 58%;
   background-size:5px 5px,5px 5px;background-repeat:no-repeat;
 }
-select option{background:#111a2b;color:var(--bone)}
+select option,select optgroup{background:#111a2b;color:var(--bone)}
 .chip{
   font-family:var(--mono);text-transform:uppercase;letter-spacing:.11em;font-size:.8rem;
   color:var(--bone-dim);border:1px solid var(--rule);background:transparent;
@@ -132,8 +128,22 @@ select option{background:#111a2b;color:var(--bone)}
 .chip.on{color:var(--brass);border-color:var(--brass-deep)}
 .chipset{display:flex;gap:9px;flex-wrap:wrap}
 
+/* --- tempo --- */
+input[type=range]{
+  -webkit-appearance:none;appearance:none;background:transparent;
+  width:clamp(110px,34vw,190px);height:20px;cursor:pointer;margin:0;
+}
+input[type=range]::-webkit-slider-runnable-track{height:1px;background:var(--rule)}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:3px;height:18px;background:var(--brass);
+  border:0;border-radius:0;margin-top:-9px;
+}
+input[type=range]::-moz-range-track{height:1px;background:var(--rule)}
+input[type=range]::-moz-range-thumb{width:3px;height:18px;background:var(--brass);border:0;border-radius:0}
+.bpm{font-family:var(--mono);font-size:.9rem;letter-spacing:.06em;color:var(--brass);min-width:74px}
+
 /* ============================================================
-   THE PLATE — repetition under an envelope
+   THE PLATE
    ============================================================ */
 .field{position:relative;height:246px}
 @media(max-width:620px){ .field{height:194px} }
@@ -149,8 +159,7 @@ select option{background:#111a2b;color:var(--bone)}
 .stroke{width:4px;background:var(--brass-deep);transition:.18s}
 .deg[data-q="m"] .stroke{width:2px}
 .deg[data-q="dim"] .stroke{
-  width:2px;
-  background:repeating-linear-gradient(to bottom,var(--brass-deep) 0 6px,transparent 6px 11px);
+  width:2px;background:repeating-linear-gradient(to bottom,var(--brass-deep) 0 6px,transparent 6px 11px);
 }
 .deg.lit .stroke,.deg.lit .dot{background:var(--brass);box-shadow:0 0 16px rgba(209,162,76,.5)}
 .deg.lit[data-q="dim"] .stroke{background:repeating-linear-gradient(to bottom,var(--brass) 0 6px,transparent 6px 11px)}
@@ -176,19 +185,30 @@ select option{background:#111a2b;color:var(--bone)}
   font-size:clamp(.55rem,2.6vw,.8rem);color:var(--bone-dim);display:block;margin-top:5px;white-space:nowrap;
 }
 .veil{visibility:hidden}
-@media(max-width:360px){ body{padding-left:13px;padding-right:13px} }
+
+/* --- marginal annotation: the chord outside the key --- */
+.outside{
+  margin-top:26px;padding-top:16px;border-top:1px dashed var(--rule-soft);
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;
+}
+.outside select{font-size:.86rem}
+.outside .verdict{font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--brass)}
+button.sound{
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;
+  color:var(--brass);background:transparent;border:1px solid var(--brass-deep);
+  padding:9px 18px;cursor:pointer;
+}
 
 /* --- readout --- */
 .readout{
-  margin-top:38px;padding:20px 0;
+  margin-top:34px;padding:20px 0;
   border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);
   min-height:102px;
 }
 .readout .status{margin-bottom:11px}
 .readout .gloss{
   font-family:var(--display);font-style:italic;
-  font-size:clamp(1.15rem,4.4vw,1.34rem);
-  color:var(--bone);opacity:.92;line-height:1.42;
+  font-size:clamp(1.15rem,4.4vw,1.34rem);color:var(--bone);opacity:.92;line-height:1.42;
 }
 
 /* --- sections --- */
@@ -203,7 +223,9 @@ button.act{
 }
 button.act:hover{color:var(--bone)}
 button.act.primary{color:var(--brass);border-color:var(--brass-deep)}
+button.act.playing{color:var(--brass);border-color:var(--brass);box-shadow:0 0 0 1px var(--brass-deep) inset}
 button.act:disabled{opacity:.3;cursor:default}
+button.act.wide{flex-basis:100%}
 .scoreline{
   font-family:var(--mono);letter-spacing:.12em;font-size:.86rem;
   color:var(--bone-dim);text-transform:uppercase;
@@ -214,8 +236,7 @@ button.act:disabled{opacity:.3;cursor:default}
 .colophon{margin-top:70px;padding-top:30px;border-top:1px solid var(--rule);text-align:center}
 .quote{
   font-family:var(--display);font-style:italic;
-  font-size:clamp(1.24rem,4.8vw,1.46rem);
-  color:var(--bone);opacity:.94;margin:0 0 14px;
+  font-size:clamp(1.24rem,4.8vw,1.46rem);color:var(--bone);opacity:.94;margin:0 0 14px;
 }
 .wordmark{margin-top:30px}
 
@@ -252,6 +273,14 @@ details[open] summary::before{content:"− "}
     <select id="keysel"></select>
   </div>
   <div class="ctrl">
+    <span class="mono">Tone</span>
+    <select id="tonesel">
+      <option value="piano">Piano</option>
+      <option value="epiano">Soft electric piano</option>
+      <option value="guitar">Guitar</option>
+    </select>
+  </div>
+  <div class="ctrl">
     <span class="mono">Voicing</span>
     <select id="soundsel">
       <option value="block">Block</option>
@@ -275,6 +304,18 @@ details[open] summary::before{content:"− "}
   </div>
   <div class="baseline"></div>
   <div class="labels" id="labels"></div>
+
+  <!-- the eighth chord: anything, from outside the key -->
+  <div class="outside">
+    <span class="mono">Outside the key</span>
+    <select id="outroot"></select>
+    <select id="outqual">
+      <option value="M">Major</option>
+      <option value="m">Minor</option>
+    </select>
+    <button class="sound" id="outplay">Sound it</button>
+    <span class="verdict" id="outverdict"></span>
+  </div>
 </div>
 
 <div class="readout">
@@ -284,11 +325,22 @@ details[open] summary::before{content:"− "}
 
 <div class="section">
   <div class="section-title"><span class="mono">Plate II &nbsp;·&nbsp; Progressions</span><span class="line"></span></div>
-  <div class="acts">
-    <button class="act" data-prog="0,4,5,3">I · V · vi · IV</button>
-    <button class="act" data-prog="0,3,4,0">I · IV · V · I</button>
-    <button class="act" data-prog="1,4,0">ii · V · I</button>
-    <button class="act" data-prog="5,3,0,4">vi · IV · I · V</button>
+  <div class="band" style="margin-bottom:22px">
+    <div class="ctrl">
+      <span class="mono">Tempo</span>
+      <input type="range" id="tempo" min="44" max="152" step="2" value="84">
+      <span class="bpm" id="bpmread">84 BPM</span>
+    </div>
+    <div class="ctrl">
+      <div class="chipset">
+        <button class="chip" data-flag="click">Click</button>
+        <button class="chip on" data-flag="loop">Loop</button>
+      </div>
+    </div>
+  </div>
+  <div class="acts" id="progs"></div>
+  <div class="acts" style="margin-top:11px">
+    <button class="act wide" id="stopBtn" disabled>Stop</button>
   </div>
 </div>
 
@@ -298,8 +350,8 @@ details[open] summary::before{content:"− "}
     <div class="ctrl">
       <span class="mono">Level</span>
       <div class="chipset" id="levels">
-        <button class="chip on" data-level="0">I IV V</button>
-        <button class="chip" data-level="1">+ ii vi</button>
+        <button class="chip on" data-level="0">Three</button>
+        <button class="chip" data-level="1">Five</button>
         <button class="chip" data-level="2">All seven</button>
       </div>
     </div>
@@ -322,9 +374,12 @@ details[open] summary::before{content:"− "}
   <summary>Teaching notes</summary>
   <ul class="notes">
     <li><b>Why numerals.</b> A numeral names a chord by its office in the key, not its letter. I–V–vi–IV is one shape in every key — so a song in G and a song in D become the same lesson.</li>
-    <li><b>Reading the plate.</b> Capitals are major (I, IV, V), lowercase minor (ii, iii, vi), lowercase with ° diminished (vii°). Stroke weight follows: heavy major, fine minor, broken diminished. Height rises with the degree.</li>
-    <li><b>Start here.</b> Hide the names, play I, IV and V only, and let them hear <i>home / away / tension</i> before the minors are introduced.</li>
-    <li><b>The transfer test.</b> Once C is secure, change the key to G and repeat. If the numerals still hold, the idea has landed — that is the whole point of Week 4.</li>
+    <li><b>Reading the plate.</b> Capitals are major, lowercase minor, lowercase with ° diminished. Stroke weight follows: heavy major, fine minor, broken diminished. Height rises with the degree.</li>
+    <li><b>The minor keys</b> use the natural minor — i, ii°, III, iv, v, VI, VII. A minor is built from exactly the notes of C major, which is the point worth making: same seven notes, different home. Most worship charts in a minor key raise the v to a major V for the final cadence; sound that from <i>Outside the key</i>.</li>
+    <li><b>Outside the key.</b> Any of the twelve roots, major or minor, labelled with its numeral relative to the current tonic — bVII, #IV, V of a minor key, and so on. Use it to show why a borrowed chord feels like a door opening.</li>
+    <li><b>Tempo and click.</b> Set a slow tempo, turn the click on, and let a trainee play the progression along with it. That is Week 3 in a single screen. Each chord lasts two beats.</li>
+    <li><b>Start here.</b> Hide the names, play degrees 1, 4 and 5 only, and let them hear <i>home / away / tension</i> before the minors are introduced.</li>
+    <li><b>The transfer test.</b> Once C is secure, change the key to G and repeat. If the numerals still hold, the idea has landed.</li>
     <li><b>On a phone.</b> Add it to the homescreen and it opens like an app and works with no signal. On iPhone the first tap unlocks audio, and the silent switch must be off.</li>
   </ul>
 </details>
@@ -335,33 +390,82 @@ details[open] summary::before{content:"− "}
 (function(){
 "use strict";
 
-/* ---------------- music data ---------------- */
-var KEYS = [
-  { name:"C",  root:60, letters:["C","D","E","F","G","A","B"] },
-  { name:"G",  root:55, letters:["G","A","B","C","D","E","F#"] },
-  { name:"D",  root:62, letters:["D","E","F#","G","A","B","C#"] },
-  { name:"A",  root:57, letters:["A","B","C#","D","E","F#","G#"] },
-  { name:"E",  root:64, letters:["E","F#","G#","A","B","C#","D#"] },
-  { name:"F",  root:65, letters:["F","G","A","Bb","C","D","E"] },
-  { name:"Bb", root:58, letters:["Bb","C","D","Eb","F","G","A"] },
-  { name:"Eb", root:63, letters:["Eb","F","G","Ab","Bb","C","D"] }
-];
-var SCALE    = [0,2,4,5,7,9,11];
-var NUMERALS = ["I","ii","iii","IV","V","vi","vii°"];
-var QUALITY  = ["","m","m","","","m","dim"];
-var ROLE = [
-  "Home. Rest. Everything resolves here.",
-  "A gentle lead-in — almost always walking towards V.",
-  "Soft and in between; it shares two notes with I.",
-  "Away from home, warm and open. The lift.",
-  "Tension. It leans hard on I and wants to fall back.",
-  "The shadowed relative of I — the same notes, a different centre.",
-  "Unstable and edged. Rarely rested upon."
-];
-var LEVELS = [[0,3,4],[0,1,3,4,5],[0,1,2,3,4,5,6]];
+/* ============================================================
+   1. MUSIC DATA
+   ============================================================ */
+var MODES = {
+  major: {
+    scale:[0,2,4,5,7,9,11],
+    numerals:["I","ii","iii","IV","V","vi","vii°"],
+    quality:["","m","m","","","m","dim"],
+    chroma:["I","bII","II","bIII","III","IV","#IV","V","bVI","VI","bVII","VII"],
+    levels:[[0,3,4],[0,1,3,4,5],[0,1,2,3,4,5,6]],
+    roles:[
+      "Home. Rest. Everything resolves here.",
+      "A gentle lead-in — almost always walking towards V.",
+      "Soft and in between; it shares two notes with I.",
+      "Away from home, warm and open. The lift.",
+      "Tension. It leans hard on I and wants to fall back.",
+      "The shadowed relative of I — the same notes, a different centre.",
+      "Unstable and edged. Rarely rested upon."
+    ]
+  },
+  minor: {
+    scale:[0,2,3,5,7,8,10],
+    numerals:["i","ii°","III","iv","v","VI","VII"],
+    quality:["m","dim","","m","m","",""],
+    chroma:["I","bII","II","III","#III","IV","#IV","V","VI","#VI","VII","#VII"],
+    levels:[[0,3,4],[0,2,3,4,5],[0,1,2,3,4,5,6]],
+    roles:[
+      "Home, and it grieves. Everything settles back here.",
+      "Unstable and edged — the sharpest colour in the key.",
+      "The relative major. Light breaking into the minor.",
+      "Away from home, and darker still than the tonic.",
+      "The natural minor's fifth. Gentler than a major V — most charts raise it.",
+      "Broad and consoling; the warmest chord the key owns.",
+      "Restless and modal. It steps up to the tonic rather than leaning on it."
+    ]
+  }
+};
 
-/* ---------------- audio ---------------- */
-var ctx=null, master=null;
+var KEYS = [
+  { name:"C",  mode:"major", root:60, letters:["C","D","E","F","G","A","B"] },
+  { name:"G",  mode:"major", root:55, letters:["G","A","B","C","D","E","F#"] },
+  { name:"D",  mode:"major", root:62, letters:["D","E","F#","G","A","B","C#"] },
+  { name:"A",  mode:"major", root:57, letters:["A","B","C#","D","E","F#","G#"] },
+  { name:"E",  mode:"major", root:64, letters:["E","F#","G#","A","B","C#","D#"] },
+  { name:"F",  mode:"major", root:65, letters:["F","G","A","Bb","C","D","E"] },
+  { name:"Bb", mode:"major", root:58, letters:["Bb","C","D","Eb","F","G","A"] },
+  { name:"Eb", mode:"major", root:63, letters:["Eb","F","G","Ab","Bb","C","D"] },
+  { name:"Am", mode:"minor", root:57, letters:["A","B","C","D","E","F","G"] },
+  { name:"Em", mode:"minor", root:64, letters:["E","F#","G","A","B","C","D"] },
+  { name:"Bm", mode:"minor", root:59, letters:["B","C#","D","E","F#","G","A"] },
+  { name:"Dm", mode:"minor", root:62, letters:["D","E","F","G","A","Bb","C"] }
+];
+
+/* chromatic roots for the outside-the-key picker */
+var CHROMA = [
+  {n:"C",pc:0},{n:"C♯",pc:1},{n:"D",pc:2},{n:"E♭",pc:3},{n:"E",pc:4},{n:"F",pc:5},
+  {n:"F♯",pc:6},{n:"G",pc:7},{n:"A♭",pc:8},{n:"A",pc:9},{n:"B♭",pc:10},{n:"B",pc:11}
+];
+var LETTER_PC = {C:0,"C#":1,Db:1,D:2,"D#":3,Eb:3,E:4,F:5,"F#":6,Gb:6,G:7,"G#":8,Ab:8,A:9,"A#":10,Bb:10,B:11};
+
+/* progressions are held as degree indexes, so they re-label themselves per mode */
+var PROGS = [
+  [0,4,5,3],
+  [0,5,3,4],
+  [0,3,4,0],
+  [1,4,0],
+  [5,3,0,4],
+  [0,4,5,2,3,0,3,4]
+];
+
+var BEATS_PER_CHORD = 2;
+
+/* ============================================================
+   2. AUDIO
+   ============================================================ */
+var ctx=null, master=null, ksCache={};
 
 function initAudio(){
   if(ctx) return;
@@ -372,7 +476,7 @@ function initAudio(){
 
   var lp = ctx.createBiquadFilter();
   lp.type = "lowpass";
-  lp.frequency.value = 4200;
+  lp.frequency.value = 4600;
 
   var conv = ctx.createConvolver();
   var len = Math.floor(ctx.sampleRate * 1.6);
@@ -383,7 +487,7 @@ function initAudio(){
   }
   conv.buffer = buf;
   var wet = ctx.createGain();
-  wet.gain.value = 0.20;
+  wet.gain.value = 0.18;
 
   master.connect(lp);
   lp.connect(ctx.destination);
@@ -397,10 +501,10 @@ function resume(){
 }
 function freq(m){ return 440 * Math.pow(2,(m-69)/12); }
 
-function voice(midi, when, dur, vol){
-  var f = freq(midi);
+/* --- piano: additive, struck --- */
+function vPiano(f, when, dur, vol, dest){
   var g = ctx.createGain();
-  g.connect(master);
+  g.connect(dest);
   g.gain.setValueAtTime(0.0001, when);
   g.gain.linearRampToValueAtTime(vol, when + 0.012);
   g.gain.exponentialRampToValueAtTime(vol*0.35, when + 0.35);
@@ -413,25 +517,121 @@ function voice(midi, when, dur, vol){
   for(var i=0;i<specs.length;i++){
     var s = specs[i];
     var o = ctx.createOscillator();
-    o.type = s.type;
-    o.frequency.value = f * s.mult;
-    o.detune.value = s.detune;
-    var og = ctx.createGain();
-    og.gain.value = s.gain;
+    o.type = s.type; o.frequency.value = f*s.mult; o.detune.value = s.detune;
+    var og = ctx.createGain(); og.gain.value = s.gain;
     o.connect(og); og.connect(g);
-    o.start(when);
-    o.stop(when + dur + 0.1);
+    o.start(when); o.stop(when + dur + 0.1);
   }
 }
 
-/* ---------------- chords ---------------- */
+/* --- soft electric piano: FM tine, gentle tremolo --- */
+function vEPiano(f, when, dur, vol, dest){
+  var out = ctx.createGain();
+  out.gain.value = 1;
+  out.connect(dest);
+
+  var trem = ctx.createOscillator();
+  trem.type = "sine"; trem.frequency.value = 4.4;
+  var tremG = ctx.createGain(); tremG.gain.value = 0.13;
+  trem.connect(tremG); tremG.connect(out.gain);
+  trem.start(when); trem.stop(when + dur + 0.1);
+
+  var g = ctx.createGain();
+  g.connect(out);
+  g.gain.setValueAtTime(0.0001, when);
+  g.gain.linearRampToValueAtTime(vol, when + 0.02);
+  g.gain.exponentialRampToValueAtTime(vol*0.45, when + 0.6);
+  g.gain.exponentialRampToValueAtTime(0.0001, when + dur);
+
+  var car = ctx.createOscillator();
+  car.type = "sine"; car.frequency.value = f;
+
+  var mod = ctx.createOscillator();
+  mod.type = "sine"; mod.frequency.value = f*14;
+  var modG = ctx.createGain();
+  modG.gain.setValueAtTime(f*2.6, when);
+  modG.gain.exponentialRampToValueAtTime(f*0.02, when + 0.4);
+  mod.connect(modG); modG.connect(car.frequency);
+
+  car.connect(g);
+  mod.start(when); mod.stop(when + dur + 0.1);
+  car.start(when); car.stop(when + dur + 0.1);
+
+  /* a little body underneath */
+  var sub = ctx.createOscillator();
+  sub.type = "sine"; sub.frequency.value = f;
+  var subG = ctx.createGain(); subG.gain.value = 0.4;
+  sub.connect(subG); subG.connect(g);
+  sub.start(when); sub.stop(when + dur + 0.1);
+}
+
+/* --- guitar: Karplus-Strong pluck, rendered once per pitch and cached --- */
+function ksBuffer(midi){
+  if(ksCache[midi]) return ksCache[midi];
+  var sr = ctx.sampleRate;
+  var N = Math.max(2, Math.round(sr / freq(midi)));
+  var len = Math.floor(sr * 2.8);
+  var buf = ctx.createBuffer(1, len, sr);
+  var d = buf.getChannelData(0);
+  var prev = 0, i;
+  for(i=0;i<N;i++){
+    var n = Math.random()*2 - 1;
+    prev = 0.5*(n + prev);          /* soften the pick */
+    d[i] = prev;
+  }
+  var rho = 0.9986;
+  for(i=N;i<len;i++){
+    d[i] = rho * 0.5 * (d[i-N] + d[i-N+1]);
+  }
+  ksCache[midi] = buf;
+  return buf;
+}
+function vGuitar(midi, when, dur, vol, dest){
+  var src = ctx.createBufferSource();
+  src.buffer = ksBuffer(midi);
+  var g = ctx.createGain();
+  g.gain.setValueAtTime(vol*2.2, when);
+  g.gain.setValueAtTime(vol*2.2, when + dur*0.7);
+  g.gain.exponentialRampToValueAtTime(0.0001, when + dur);
+  var lp = ctx.createBiquadFilter();
+  lp.type = "lowpass"; lp.frequency.value = 3200;
+  src.connect(lp); lp.connect(g); g.connect(dest);
+  src.start(when);
+  src.stop(when + dur + 0.05);
+}
+
+function voice(midi, when, dur, vol, dest){
+  dest = dest || master;
+  var tone = document.getElementById("tonesel").value;
+  if(tone === "guitar")  return vGuitar(midi, when, dur, vol, dest);
+  if(tone === "epiano")  return vEPiano(freq(midi), when, dur*1.15, vol*0.9, dest);
+  return vPiano(freq(midi), when, dur, vol, dest);
+}
+
+/* --- metronome --- */
+function click(when, accent){
+  var o = ctx.createOscillator();
+  o.type = "square";
+  o.frequency.value = accent ? 1760 : 1200;
+  var g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, when);
+  g.gain.linearRampToValueAtTime(accent ? 0.10 : 0.055, when + 0.002);
+  g.gain.exponentialRampToValueAtTime(0.0001, when + 0.045);
+  o.connect(g); g.connect(master);
+  o.start(when); o.stop(when + 0.07);
+}
+
+/* ============================================================
+   3. CHORDS
+   ============================================================ */
 function keyObj(){ return KEYS[document.getElementById("keysel").selectedIndex]; }
+function mode(){ return MODES[keyObj().mode]; }
 
 function chordNotes(d){
-  var k = keyObj(), out = [];
+  var k = keyObj(), sc = mode().scale, out = [];
   for(var i=0;i<3;i++){
     var deg = d + i*2;
-    out.push(k.root + SCALE[deg % 7] + 12*Math.floor(deg/7));
+    out.push(k.root + sc[deg % 7] + 12*Math.floor(deg/7));
   }
   while(out[2] > k.root + 16){ out = out.map(function(n){ return n-12; }); }
   return { bass: out[0]-12, triad: out };
@@ -441,26 +641,61 @@ function noteNames(d){
   return [ L[d%7], L[(d+2)%7], L[(d+4)%7] ];
 }
 function chordName(d){
-  var L = keyObj().letters, q = QUALITY[d];
+  var L = keyObj().letters, q = mode().quality[d];
   return (q === "dim") ? L[d] + "°" : L[d] + q;
 }
 
-function playChord(d, when, style){
+function sound(notes, when, style, dest){
   resume();
   when = when || ctx.currentTime + 0.02;
   style = style || document.getElementById("soundsel").value;
-  var n = chordNotes(d), dur = 2.4;
-  voice(n.bass, when, dur, 0.16);
+  var dur = 2.4;
+  voice(notes.bass, when, dur, 0.16, dest);
   if(style === "broken"){
-    var seq = [n.triad[0], n.triad[1], n.triad[2], n.triad[1]];
-    for(var i=0;i<seq.length;i++){ voice(seq[i], when + i*0.16, dur - i*0.12, 0.15); }
+    var seq = [notes.triad[0], notes.triad[1], notes.triad[2], notes.triad[1]];
+    for(var i=0;i<seq.length;i++){ voice(seq[i], when + i*0.16, dur - i*0.12, 0.15, dest); }
   } else {
     var spread = (style === "strum") ? 0.055 : 0.006;
-    for(var j=0;j<n.triad.length;j++){ voice(n.triad[j], when + j*spread, dur, 0.15); }
+    for(var j=0;j<notes.triad.length;j++){ voice(notes.triad[j], when + j*spread, dur, 0.15, dest); }
   }
 }
+function playChord(d, when, style, dest){ sound(chordNotes(d), when, style, dest); }
 
-/* ---------------- the plate ---------------- */
+/* --- the chord from outside the key --- */
+function outsideNotes(){
+  var k = keyObj();
+  var pc = CHROMA[document.getElementById("outroot").selectedIndex].pc;
+  var qual = document.getElementById("outqual").value;
+  var tonicPC = ((k.root % 12) + 12) % 12;
+  var m = k.root + ((pc - tonicPC + 12) % 12);
+  var third = (qual === "m") ? 3 : 4;
+  var t = [m, m+third, m+7];
+  while(t[2] > k.root + 16){ t = t.map(function(n){ return n-12; }); }
+  return { bass:t[0]-12, triad:t };
+}
+function outsideLabel(){
+  var k = keyObj();
+  var pc = CHROMA[document.getElementById("outroot").selectedIndex].pc;
+  var name = CHROMA[document.getElementById("outroot").selectedIndex].n;
+  var qual = document.getElementById("outqual").value;
+  var tonicPC = ((k.root % 12) + 12) % 12;
+  var iv = (pc - tonicPC + 12) % 12;
+  var num = mode().chroma[iv];
+  if(qual === "m") num = num.toLowerCase();
+  /* is it already one of the seven? */
+  var inKey = false;
+  for(var d=0; d<7; d++){
+    var q = mode().quality[d];
+    var dpc = LETTER_PC[keyObj().letters[d]];
+    var dq = (q === "m") ? "m" : (q === "" ? "M" : "dim");
+    if(dpc === pc && dq === qual){ inKey = true; break; }
+  }
+  return { numeral:num, name:name + (qual === "m" ? " minor" : " major"), inKey:inKey };
+}
+
+/* ============================================================
+   4. THE PLATE
+   ============================================================ */
 var degWrap = document.getElementById("degrees");
 var labWrap = document.getElementById("labels");
 var show = { names:true, notes:true };
@@ -470,33 +705,47 @@ function buildTicks(){
   for(var i=0;i<N;i++){
     var x = i/(N-1);
     var env = Math.exp(-0.5 * Math.pow((x-0.5)/0.27, 2));
-    var h = 6 + 50*env;
-    html += '<i class="tick" style="left:' + (x*100).toFixed(3) + '%;height:' + h.toFixed(2) + '%"></i>';
+    html += '<i class="tick" style="left:' + (x*100).toFixed(3) + '%;height:' + (6 + 50*env).toFixed(2) + '%"></i>';
   }
   box.innerHTML = html;
 }
 
 function buildKeySelect(){
   var sel = document.getElementById("keysel");
+  var gM = document.createElement("optgroup"); gM.label = "Major";
+  var gm = document.createElement("optgroup"); gm.label = "Minor";
   for(var i=0;i<KEYS.length;i++){
     var o = document.createElement("option");
     o.value = KEYS[i].name;
-    o.textContent = KEYS[i].name + " major";
+    o.textContent = KEYS[i].mode === "major"
+      ? KEYS[i].name + " major"
+      : KEYS[i].name.replace("m","") + " minor";
+    (KEYS[i].mode === "major" ? gM : gm).appendChild(o);
+  }
+  sel.appendChild(gM); sel.appendChild(gm);
+}
+
+function buildOutsideSelect(){
+  var sel = document.getElementById("outroot");
+  for(var i=0;i<CHROMA.length;i++){
+    var o = document.createElement("option");
+    o.value = CHROMA[i].pc; o.textContent = CHROMA[i].n;
     sel.appendChild(o);
   }
+  sel.selectedIndex = 0;
 }
 
 function buildPlate(){
-  degWrap.innerHTML = "";
-  labWrap.innerHTML = "";
+  var M = mode();
+  degWrap.innerHTML = ""; labWrap.innerHTML = "";
   for(var d=0; d<7; d++){
     (function(deg){
       var h = 46 + 54*(deg/6);
       var b = document.createElement("button");
       b.className = "deg";
       b.setAttribute("data-deg", deg);
-      b.setAttribute("data-q", QUALITY[deg] || "M");
-      b.setAttribute("aria-label", NUMERALS[deg] + " " + chordName(deg));
+      b.setAttribute("data-q", M.quality[deg] || "M");
+      b.setAttribute("aria-label", M.numerals[deg] + " " + chordName(deg));
       b.innerHTML = '<span class="dot"></span><span class="stroke" style="height:' + h.toFixed(1) + '%"></span>';
       b.addEventListener("click", function(){ onTap(deg); });
       degWrap.appendChild(b);
@@ -505,7 +754,7 @@ function buildPlate(){
       l.className = "lab";
       l.setAttribute("data-deg", deg);
       l.innerHTML =
-        '<span class="num">' + NUMERALS[deg] + '</span>' +
+        '<span class="num">' + M.numerals[deg] + '</span>' +
         '<span class="nm' + (show.names?"":" veil") + '">' + chordName(deg) + '</span>' +
         '<span class="nt' + (show.notes?"":" veil") + '">' + noteNames(deg).join(" ") + '</span>';
       l.addEventListener("click", function(){ onTap(deg); });
@@ -514,11 +763,27 @@ function buildPlate(){
   }
 }
 
+function buildProgs(){
+  var M = mode(), wrap = document.getElementById("progs");
+  wrap.innerHTML = "";
+  for(var i=0;i<PROGS.length;i++){
+    (function(degs, idx){
+      var b = document.createElement("button");
+      b.className = "act" + (degs.length > 4 ? " wide" : "");
+      b.setAttribute("data-prog", idx);
+      b.textContent = degs.map(function(d){ return M.numerals[d]; }).join(" · ");
+      b.addEventListener("click", function(){ toggleProgression(idx, b); });
+      wrap.appendChild(b);
+    })(PROGS[i], i);
+  }
+}
+
 function cells(deg){
   return [ degWrap.querySelector('[data-deg="'+deg+'"]'), labWrap.querySelector('[data-deg="'+deg+'"]') ];
 }
 function mark(deg, cls, ms){
   var c = cells(deg);
+  if(!c[0]) return;
   c[0].classList.add(cls); c[1].classList.add(cls);
   setTimeout(function(){ c[0].classList.remove(cls); c[1].classList.remove(cls); }, ms||700);
 }
@@ -531,23 +796,93 @@ function onTap(deg){
   if(quiz.active && quiz.answer !== null){ return answer(deg); }
   playChord(deg);
   mark(deg, "lit", 620);
-  setReadout(NUMERALS[deg] + " · " + chordName(deg) + " · " + noteNames(deg).join(" "), ROLE[deg]);
+  setReadout(mode().numerals[deg] + " · " + chordName(deg) + " · " + noteNames(deg).join(" "), mode().roles[deg]);
 }
 
-function playProgression(degs){
-  resume();
-  var t = ctx.currentTime + 0.05;
-  var names = degs.map(function(d){ return chordName(d); }).join("  ·  ");
-  setReadout(degs.map(function(d){ return NUMERALS[d]; }).join(" · "), names + " — in " + keyObj().name + " major.");
-  for(var i=0;i<degs.length;i++){
-    (function(deg, at, idx){
-      playChord(deg, at);
-      setTimeout(function(){ mark(deg, "lit", 760); }, idx*900);
-    })(degs[i], t + i*0.9, i);
+/* ============================================================
+   5. PROGRESSIONS — tempo, click, loop
+   ============================================================ */
+var seq = { idx:-1, timer:null, bus:null, btn:null, marks:[] };
+var flags = { click:false, loop:true };
+
+function tempoBPM(){ return parseInt(document.getElementById("tempo").value, 10); }
+
+function stopSequence(){
+  if(seq.timer){ clearTimeout(seq.timer); seq.timer = null; }
+  for(var i=0;i<seq.marks.length;i++){ clearTimeout(seq.marks[i]); }
+  seq.marks = [];
+  if(seq.bus){
+    var b = seq.bus;
+    try{
+      b.gain.cancelScheduledValues(ctx.currentTime);
+      b.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.03);
+    }catch(e){}
+    setTimeout(function(){ try{ b.disconnect(); }catch(e){} }, 600);
+    seq.bus = null;
   }
+  if(seq.btn){ seq.btn.classList.remove("playing"); seq.btn = null; }
+  seq.idx = -1;
+  document.getElementById("stopBtn").disabled = true;
 }
 
-/* ---------------- ear training ---------------- */
+function toggleProgression(idx, btn){
+  if(seq.idx === idx){ stopSequence(); return; }
+  stopSequence();
+  resume();
+  seq.idx = idx;
+  seq.btn = btn;
+  btn.classList.add("playing");
+  document.getElementById("stopBtn").disabled = false;
+
+  seq.bus = ctx.createGain();
+  seq.bus.gain.value = 1;
+  seq.bus.connect(master);
+
+  var M = mode(), degs = PROGS[idx];
+  setReadout(
+    degs.map(function(d){ return M.numerals[d]; }).join(" · "),
+    degs.map(function(d){ return chordName(d); }).join("  ·  ") + " — in " + keyLabel() + ", at " + tempoBPM() + " beats per minute."
+  );
+  seq.next = ctx.currentTime + 0.12;
+  cycle();
+}
+
+function cycle(){
+  if(seq.idx < 0) return;
+  var degs = PROGS[seq.idx];
+  var beat = 60 / tempoBPM();
+  var chordLen = beat * BEATS_PER_CHORD;
+  var t0 = seq.next;
+
+  for(var i=0;i<degs.length;i++){
+    var at = t0 + i*chordLen;
+    playChord(degs[i], at, null, seq.bus);
+    (function(deg, at){
+      seq.marks.push(setTimeout(function(){ mark(deg, "lit", Math.min(900, chordLen*1000*0.8)); },
+        Math.max(0, (at - ctx.currentTime) * 1000)));
+    })(degs[i], at);
+  }
+  if(flags.click){
+    var beats = degs.length * BEATS_PER_CHORD;
+    for(var b=0;b<beats;b++){ click(t0 + b*beat, b % BEATS_PER_CHORD === 0); }
+  }
+
+  var cycleLen = degs.length * chordLen;
+  seq.next = t0 + cycleLen;
+  var wait = (seq.next - ctx.currentTime) * 1000;
+  seq.timer = flags.loop
+    ? setTimeout(cycle, Math.max(30, wait - 90))
+    : setTimeout(stopSequence, wait + 1500);   /* let the last chord ring out */
+}
+
+function keyLabel(){
+  var k = keyObj();
+  return k.mode === "major" ? k.name + " major" : k.name.replace("m","") + " minor";
+}
+
+/* ============================================================
+   6. EAR TRAINING
+   ============================================================ */
 var quiz = { active:false, answer:null, score:0, total:0, tries:0, level:0 };
 
 function updateScore(){
@@ -561,7 +896,7 @@ function playQuestion(){
   playChord(quiz.answer, t + 1.15);
 }
 function nextQuestion(){
-  var pool = LEVELS[quiz.level];
+  var pool = mode().levels[quiz.level];
   quiz.answer = pool[Math.floor(Math.random()*pool.length)];
   quiz.tries = 0;
   setReadout("Listening", "Home was sounded first. Which degree followed it?");
@@ -570,11 +905,12 @@ function nextQuestion(){
   playQuestion();
 }
 function answer(deg){
+  var M = mode();
   if(deg === quiz.answer){
     quiz.score++; quiz.total++; updateScore();
     mark(deg, "lit", 1000);
     playChord(deg);
-    setReadout("Correct · " + NUMERALS[deg] + " · " + chordName(deg), ROLE[deg]);
+    setReadout("Correct · " + M.numerals[deg] + " · " + chordName(deg), M.roles[deg]);
     quiz.answer = null;
     setTimeout(function(){ if(quiz.active) nextQuestion(); }, 1900);
   } else {
@@ -586,7 +922,7 @@ function answer(deg){
       quiz.total++; updateScore();
       var a = quiz.answer; quiz.answer = null;
       mark(a, "lit", 1500);
-      setReadout("It was " + NUMERALS[a] + " · " + chordName(a), ROLE[a]);
+      setReadout("It was " + M.numerals[a] + " · " + chordName(a), M.roles[a]);
       setTimeout(function(){ if(quiz.active) nextQuestion(); }, 2400);
     } else {
       setReadout("Not that one", "Listen once more — is it resting, leaning, or lifting away?");
@@ -596,10 +932,10 @@ function answer(deg){
 }
 function revealAnswer(){
   if(quiz.answer === null) return;
-  var a = quiz.answer;
+  var M = mode(), a = quiz.answer;
   quiz.total++; quiz.answer = null; updateScore();
   mark(a, "lit", 1500);
-  setReadout("Revealed · " + NUMERALS[a] + " · " + chordName(a), ROLE[a]);
+  setReadout("Revealed · " + M.numerals[a] + " · " + chordName(a), M.roles[a]);
   setTimeout(function(){ if(quiz.active) nextQuestion(); }, 2200);
 }
 function startQuiz(){
@@ -617,14 +953,58 @@ function stopQuiz(){
   setReadout("Halted", "Tap any degree to explore the key freely.");
 }
 
-/* ---------------- wiring ---------------- */
+/* ============================================================
+   7. WIRING
+   ============================================================ */
 buildKeySelect();
+buildOutsideSelect();
 buildTicks();
 buildPlate();
+buildProgs();
+refreshOutside();
+
+function refreshOutside(){
+  var v = outsideLabel();
+  document.getElementById("outverdict").textContent =
+    v.numeral + (v.inKey ? " · in the key" : " · borrowed");
+}
 
 document.getElementById("keysel").addEventListener("change", function(){
-  buildPlate();
-  setReadout(keyObj().name + " major", "The letters have changed; the numerals have not. That is the whole idea.");
+  stopSequence();
+  buildPlate(); buildProgs(); refreshOutside();
+  setReadout(keyLabel(), "The letters have changed; the numerals have not. That is the whole idea.");
+});
+document.getElementById("outroot").addEventListener("change", refreshOutside);
+document.getElementById("outqual").addEventListener("change", refreshOutside);
+
+document.getElementById("outplay").addEventListener("click", function(){
+  resume();
+  sound(outsideNotes(), null, "block");
+  var v = outsideLabel();
+  setReadout(v.numeral + " · " + v.name,
+    v.inKey
+      ? "This one already belongs to " + keyLabel() + " — you have simply named it from the chromatic scale."
+      : "Borrowed from outside " + keyLabel() + ". Hear how it opens a door the seven cannot.");
+});
+
+document.getElementById("tempo").addEventListener("input", function(){
+  document.getElementById("bpmread").textContent = tempoBPM() + " BPM";
+});
+document.getElementById("tempo").addEventListener("change", function(){
+  if(seq.idx >= 0){
+    var i = seq.idx, b = seq.btn;
+    stopSequence();
+    toggleProgression(i, b);
+  }
+});
+document.getElementById("stopBtn").addEventListener("click", stopSequence);
+
+Array.prototype.forEach.call(document.querySelectorAll('.chip[data-flag]'), function(c){
+  c.addEventListener("click", function(){
+    var f = c.getAttribute("data-flag");
+    flags[f] = !flags[f];
+    c.classList.toggle("on", flags[f]);
+  });
 });
 
 Array.prototype.forEach.call(document.querySelectorAll('.chip[data-toggle]'), function(c){
@@ -644,12 +1024,6 @@ Array.prototype.forEach.call(document.querySelectorAll('#levels .chip'), functio
   });
 });
 
-Array.prototype.forEach.call(document.querySelectorAll('button[data-prog]'), function(b){
-  b.addEventListener("click", function(){
-    playProgression(b.getAttribute("data-prog").split(",").map(Number));
-  });
-});
-
 document.getElementById("startBtn").addEventListener("click", function(){
   if(quiz.active) stopQuiz(); else startQuiz();
 });
@@ -657,6 +1031,10 @@ document.getElementById("replayBtn").addEventListener("click", function(){
   if(quiz.answer !== null) playQuestion();
 });
 document.getElementById("revealBtn").addEventListener("click", revealAnswer);
+
+document.getElementById("tonesel").addEventListener("change", function(){
+  ksCache = {};
+});
 
 document.addEventListener("touchstart", resume, { once:true });
 document.addEventListener("mousedown", resume, { once:true });

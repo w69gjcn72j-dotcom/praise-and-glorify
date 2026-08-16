@@ -1,6 +1,6 @@
 /* Chord & Numeral — offline cache.
    Bump CACHE when you change any file, or phones will keep serving the old one. */
-var CACHE = "chord-numeral-v1";
+var CACHE = "chord-numeral-v2";
 var FILES = [
   "./",
   "index.html",
