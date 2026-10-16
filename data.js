@@ -97,6 +97,16 @@ window.PG = {
    "sheet": true
   },
   {
+   "id": "calling-all-sinners",
+   "en": "Calling All Sinners",
+   "zh": "",
+   "key": "F",
+   "ccli": null,
+   "pages": 4,
+   "lib": "en",
+   "sheet": true
+  },
+  {
    "id": "christ-our-hope-in-life-and-death",
    "en": "Christ Our Hope in Life and Death",
    "zh": "生死盼望在基督",
@@ -561,10 +571,7 @@ window.PG = {
    "en": [
     "build-my-life",
     "only-a-holy-god",
-    {
-     "en": "Calling All Sinners",
-     "zh": ""
-    }
+    "calling-all-sinners"
    ],
    "mCn": "Eileen Zhang",
    "cn": [],
