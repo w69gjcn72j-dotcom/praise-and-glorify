@@ -515,8 +515,8 @@ window.PG = {
    "mEn": "Lucy, Chelsea",
    "en": [
     {
-     "en": "Whom Have I in Heaven But You",
-     "zh": ""
+     "en": "",
+     "zh": "Path of Grace 恩典之路"
     },
     "yet-not-i-but-through-christ-in-me",
     "all-i-have-is-christ"
@@ -588,7 +588,7 @@ window.PG = {
    "d": "2026-11-08",
    "type": "Parallel",
    "passage": "Luke 5:27–39",
-   "mEn": "Jenny, Chelsea",
+   "mEn": "Enya, Jenny",
    "en": [
     "here-we-stand",
     "his-mercy-is-more",
@@ -631,6 +631,86 @@ window.PG = {
    "mCn": "Eileen Zhang",
    "cn": [],
    "notes": ""
+  },
+  {
+   "d": "2026-12-06",
+   "type": "",
+   "passage": "",
+   "mEn": "Enya, Peter Li",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": "Combined service TBC · Chelsea away"
+  },
+  {
+   "d": "2026-12-13",
+   "type": "",
+   "passage": "",
+   "mEn": "Lucy, Chelsey, Grace",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": "Chelsea away"
+  },
+  {
+   "d": "2026-12-20",
+   "type": "Advent 4",
+   "passage": "",
+   "mEn": "Elim, Enya",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": "Lucy away"
+  },
+  {
+   "d": "2026-12-25",
+   "type": "Christmas Day (Friday)",
+   "passage": "",
+   "mEn": "Enya, Jenny",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": "Lucy away"
+  },
+  {
+   "d": "2026-12-27",
+   "type": "",
+   "passage": "",
+   "mEn": "Enya, Chelsea",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": "Lucy, Jenny and David away"
+  },
+  {
+   "d": "2027-01-03",
+   "type": "",
+   "passage": "",
+   "mEn": "Enya, Peter Li",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": "Lucy, Jenny and David away"
+  },
+  {
+   "d": "2027-01-10",
+   "type": "",
+   "passage": "",
+   "mEn": "Elim, Enya",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": "David and Jenny away"
+  },
+  {
+   "d": "2027-01-17",
+   "type": "",
+   "passage": "",
+   "mEn": "Lucy, Peter Li, Grace, Chelsea, Chelsey",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": "Jenny and David away"
   }
  ],
  "NOSHEET": [
@@ -867,5 +947,5 @@ window.PG = {
    "note": ""
   }
  ],
- "updated": "2026-09-26"
+ "updated": "2026-10-16"
 };
