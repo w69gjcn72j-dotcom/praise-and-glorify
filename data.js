@@ -624,100 +624,396 @@ window.PG = {
    "type": "Parallel · King of the Universe",
    "passage": "Luke 6:20–49",
    "mEn": "Enya, Jenny",
-   "en": [],
+   "en": [
+    "calling-all-sinners",
+    {
+     "en": "On That Day",
+     "zh": "在那日"
+    },
+    {
+     "en": "My Hope Is Built",
+     "zh": ""
+    }
+   ],
    "mCn": "Eileen Zhang",
    "cn": [],
    "notes": ""
   },
   {
    "d": "2026-11-29",
-   "type": "Parallel",
+   "type": "Parallel · Advent 1",
    "passage": "Luke 7:1–30",
    "mEn": "Elim, Enya",
-   "en": [],
+   "en": [
+    {
+     "en": "The First Noel",
+     "zh": ""
+    },
+    "a-thousand-hallelujahs",
+    {
+     "en": "O Come All Ye Unfaithful",
+     "zh": ""
+    }
+   ],
    "mCn": "Eileen Zhang",
    "cn": [],
    "notes": ""
   },
   {
    "d": "2026-12-06",
-   "type": "",
-   "passage": "",
+   "type": "Combined · Communion · Advent 2",
+   "passage": "Luke 7:31–50",
    "mEn": "Enya, Peter Li",
-   "en": [],
+   "en": [
+    {
+     "en": "As the Deer",
+     "zh": "如鹿切慕溪水"
+    },
+    "we-are-one-in-the-father-s-love",
+    "hark-the-herald-angels-sing-mendelssohn"
+   ],
    "mCn": "",
    "cn": [],
    "notes": "Combined service TBC · Chelsea away"
   },
   {
    "d": "2026-12-13",
-   "type": "",
-   "passage": "",
-   "mEn": "Lucy, Chelsey, Grace",
-   "en": [],
+   "type": "Combined · Baptism & Confirmation",
+   "passage": "Luke 8:1–21",
+   "mEn": "Lucy & Sunday School; Jenny, Chelsey, Grace",
+   "en": [
+    {
+     "en": "Angels We Have Heard on High",
+     "zh": ""
+    },
+    "jesus-strong-and-kind",
+    {
+     "en": "O Come All Ye Unfaithful",
+     "zh": ""
+    }
+   ],
    "mCn": "",
    "cn": [],
    "notes": "Chelsea away"
   },
   {
    "d": "2026-12-20",
-   "type": "Advent 4",
-   "passage": "",
+   "type": "Parallel · Advent 4",
+   "passage": "TBC",
    "mEn": "Elim, Enya",
-   "en": [],
-   "mCn": "",
+   "en": [
+    {
+     "en": "What Child Is This",
+     "zh": ""
+    },
+    "o-come-all-ye-faithful-adeste-fideles",
+    {
+     "en": "Shepherd's Watch",
+     "zh": ""
+    }
+   ],
+   "mCn": "Eileen Zhang",
    "cn": [],
    "notes": "Lucy away"
   },
   {
    "d": "2026-12-25",
-   "type": "Christmas Day (Friday)",
-   "passage": "",
+   "type": "Combined · Christmas Day",
+   "passage": "Luke 2:21–35",
    "mEn": "Enya, Jenny",
-   "en": [],
+   "en": [
+    {
+     "en": "O Come All Ye Unfaithful",
+     "zh": ""
+    },
+    "immanuel",
+    "joy-to-the-world-antioch"
+   ],
    "mCn": "",
    "cn": [],
    "notes": "Lucy away"
   },
   {
    "d": "2026-12-27",
-   "type": "",
-   "passage": "",
+   "type": "Parallel · Sunday after Christmas",
+   "passage": "Luke 2:36–52",
    "mEn": "Enya, Chelsea",
-   "en": [],
-   "mCn": "",
+   "en": [
+    "joy-to-the-world-antioch",
+    {
+     "en": "The First Noel",
+     "zh": ""
+    },
+    {
+     "en": "Angels We Have Heard on High",
+     "zh": ""
+    }
+   ],
+   "mCn": "Eileen Zhang",
    "cn": [],
    "notes": "Lucy, Jenny and David away"
   },
   {
    "d": "2027-01-03",
-   "type": "",
-   "passage": "",
+   "type": "Combined · Communion",
+   "passage": "Luke 9:1–27",
    "mEn": "Enya, Peter Li",
-   "en": [],
+   "en": [
+    {
+     "en": "Lord, I Believe",
+     "zh": ""
+    },
+    "all-glory-be-to-christ",
+    "turn-your-eyes-upon-jesus"
+   ],
    "mCn": "",
    "cn": [],
    "notes": "Lucy, Jenny and David away"
   },
   {
    "d": "2027-01-10",
-   "type": "",
-   "passage": "",
+   "type": "Parallel",
+   "passage": "Luke 9:28–62",
    "mEn": "Elim, Enya",
-   "en": [],
-   "mCn": "",
+   "en": [
+    {
+     "en": "You Are the Treasure of My Life",
+     "zh": ""
+    },
+    "we-are-one-in-the-father-s-love",
+    "how-deep-the-father-s-love-for-us"
+   ],
+   "mCn": "Eileen Zhang",
    "cn": [],
    "notes": "David and Jenny away"
   },
   {
    "d": "2027-01-17",
-   "type": "",
-   "passage": "",
-   "mEn": "Lucy, Peter Li, Grace, Chelsea, Chelsey",
+   "type": "Parallel",
+   "passage": "Luke 10:1–42",
+   "mEn": "Lucy, Peter Li, Grace; Chelsea, Chelsey",
+   "en": [
+    {
+     "en": "Whom Have I in Heaven But You",
+     "zh": ""
+    },
+    "here-we-stand",
+    "jesus-paid-it-all-christ-i-owe"
+   ],
+   "mCn": "Eileen Zhang",
+   "cn": [],
+   "notes": "Jenny and David away"
+  },
+  {
+   "d": "2027-01-24",
+   "type": "Parallel",
+   "passage": "Luke 11:1–54",
+   "mEn": "Chelsea, Elim",
+   "en": [],
+   "mCn": "Eileen Zhang",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-01-31",
+   "type": "Parallel",
+   "passage": "Luke 12:1–59",
+   "mEn": "Jenny, Peter Li",
+   "en": [],
+   "mCn": "Eileen Zhang",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-02-07",
+   "type": "Combined · Communion · Vision, Commission & Chinese New Year",
+   "passage": "John 10:14–18",
+   "mEn": "Enya, Chelsea, Elim",
    "en": [],
    "mCn": "",
    "cn": [],
-   "notes": "Jenny and David away"
+   "notes": ""
+  },
+  {
+   "d": "2027-02-14",
+   "type": "Combined · Lent 1",
+   "passage": "Luke 13:1–35",
+   "mEn": "Peter Li, Enya",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-02-21",
+   "type": "Combined · Lent 2",
+   "passage": "Luke 14:1–35",
+   "mEn": "Lucy, Peter Li",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-02-28",
+   "type": "Combined · Lent 3",
+   "passage": "Luke 15:1–32",
+   "mEn": "Chelsea, Elim",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-03-07",
+   "type": "Combined · Communion · Lent 4",
+   "passage": "Luke 16:1–31",
+   "mEn": "Peter Li, Enya",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-03-14",
+   "type": "Combined · Lent 5",
+   "passage": "Luke 17:1–37",
+   "mEn": "Jenny, Chelsea",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-03-21",
+   "type": "Combined · Palm Sunday",
+   "passage": "Luke 18:1–43",
+   "mEn": "Elim, Enya",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-03-26",
+   "type": "Combined · Good Friday",
+   "passage": "Mark 15:16–47",
+   "mEn": "Peter Li, Chelsea, Elim",
+   "en": [
+    "when-i-survey",
+    "how-deep-the-father-s-love-for-us",
+    "jesus-paid-it-all-christ-i-owe"
+   ],
+   "mCn": "",
+   "cn": [],
+   "notes": "Suggested songs, to be confirmed."
+  },
+  {
+   "d": "2027-03-28",
+   "type": "Combined · Easter Sunday",
+   "passage": "Mark 16:1–8",
+   "mEn": "Lucy, Peter Li, Chelsea",
+   "en": [
+    {
+     "en": "Christ the Lord Is Risen Today",
+     "zh": ""
+    },
+    "in-christ-alone",
+    "christus-victor-amen"
+   ],
+   "mCn": "",
+   "cn": [],
+   "notes": "Suggested songs, to be confirmed."
+  },
+  {
+   "d": "2027-04-04",
+   "type": "Combined · Communion",
+   "passage": "Acts 17:1–15",
+   "mEn": "Enya, Elim",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-04-11",
+   "type": "Combined",
+   "passage": "Acts 17:16–34",
+   "mEn": "Peter Li, Enya",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-04-18",
+   "type": "Combined",
+   "passage": "Acts 18:1–28",
+   "mEn": "Jenny, Chelsea",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-04-25",
+   "type": "Combined · Anzac Day",
+   "passage": "Acts 19:1–41",
+   "mEn": "Elim, Enya",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-05-02",
+   "type": "Combined · Communion",
+   "passage": "Acts 20:1–38",
+   "mEn": "Peter Li, Chelsea",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-05-09",
+   "type": "Combined · Mother's Day",
+   "passage": "Acts 21:1–36",
+   "mEn": "Lucy, Elim",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-05-16",
+   "type": "Combined · Pentecost",
+   "passage": "Acts 21:37–22:29",
+   "mEn": "Enya, Chelsea",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-05-23",
+   "type": "Combined · Trinity Sunday",
+   "passage": "Acts 22:30–23:35",
+   "mEn": "Peter Li, Elim",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
+  },
+  {
+   "d": "2027-05-30",
+   "type": "Combined",
+   "passage": "Acts 24:1–27",
+   "mEn": "Jenny, Peter Li",
+   "en": [],
+   "mCn": "",
+   "cn": [],
+   "notes": ""
   }
  ],
  "NOSHEET": [
@@ -954,5 +1250,5 @@ window.PG = {
    "note": ""
   }
  ],
- "updated": "2026-10-16"
+ "updated": "2026-10-30"
 };
