@@ -367,6 +367,16 @@ window.PG = {
    "sheet": true
   },
   {
+   "id": "praise-god-from-whom-all-blessings-flow-old-100th",
+   "en": "Praise God From Whom All Blessings Flow (Old 100th)",
+   "zh": "",
+   "key": "G",
+   "ccli": 56204,
+   "pages": 1,
+   "lib": "en",
+   "sheet": true
+  },
+  {
    "id": "rock-of-ages-toplady",
    "en": "Rock of Ages",
    "zh": "万古磐石为我开",
@@ -1250,5 +1260,5 @@ window.PG = {
    "note": ""
   }
  ],
- "updated": "2026-10-30"
+ "updated": "2026-11-06"
 };
