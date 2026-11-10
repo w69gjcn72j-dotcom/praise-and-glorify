@@ -25,14 +25,21 @@ def load(name):
     return out
 
 ST_CHARS, ST_PHRASES, TW_VAR = load("STCharacters.txt"), load("STPhrases.txt"), load("TWVariants.txt")
-tw = lambda s: "".join(TW_VAR.get(c, c) for c in s)
+gloss = json.load(open(sys.argv[1], encoding="utf-8"))
+# House character forms: where the dictionary's choice is not the one this church writes (講台 not 講臺).
+HOUSE = {v["from"]: v["to"] for v in gloss.get("hant_variants", [])}
+def tw(s):
+    s = "".join(TW_VAR.get(c, c) for c in s)
+    return "".join(HOUSE.get(c, c) for c in s)
 
 char_map = {}
 for c, t in ST_CHARS.items():
     t = tw(t)
     if t != c: char_map[c] = t
 for c, t in TW_VAR.items():            # Traditional-but-not-Taiwan forms that may already be in the text
-    if c not in ST_CHARS and t != c: char_map.setdefault(c, t)
+    if c not in ST_CHARS and tw(t) != c: char_map.setdefault(c, tw(t))
+for c, t in HOUSE.items():
+    if c not in ST_CHARS: char_map[c] = t
 
 char_map = {c: t for c, t in char_map.items() if ord(c) < 0x10000 and len(t) == 1 and ord(t) < 0x10000}
 default = lambda s: "".join(char_map.get(c, c) for c in s)
@@ -46,7 +53,6 @@ exceptions = {p: t for p, t in phrases.items() if t != default(p)}
 # matched first (the same segmentation as the reference converter). Only its source text is stored.
 protect = [p for p in phrases if p not in exceptions]
 
-gloss = json.load(open(sys.argv[1], encoding="utf-8"))
 overrides = {o["hans"]: o["hant"] for o in gloss.get("hant_overrides", [])}
 
 table = dict(exceptions); table.update(overrides)
@@ -63,4 +69,4 @@ js = ("/* kog-hant.js - Simplified to Traditional table for kog-shell.js. GENERA
       % (json.dumps(cs, ensure_ascii=False), json.dumps(ct, ensure_ascii=False), json.dumps(ph, ensure_ascii=False), json.dumps(pq, ensure_ascii=False)))
 open(sys.argv[2], "w", encoding="utf-8").write(js)
 json.dump({"chars": char_map, "phrases": table, "protect": protect}, open(os.path.splitext(sys.argv[2])[0] + ".table.json", "w", encoding="utf-8"), ensure_ascii=False)
-print(f"chars {len(char_map)}  exceptions {len(exceptions)}  protective {len(protect)}  overrides {len(overrides)}  -> {len(js.encode('utf-8'))/1024:.0f} KB")
+print(f"house forms {len(HOUSE)}  chars {len(char_map)}  exceptions {len(exceptions)}  protective {len(protect)}  overrides {len(overrides)}  -> {len(js.encode('utf-8'))/1024:.0f} KB")

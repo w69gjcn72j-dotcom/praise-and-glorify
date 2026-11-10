@@ -15,9 +15,10 @@
    Options on the script tag
      data-app="id"           which menu entry this page is (see MENU below)
      data-legacy-key="k"     an older localStorage key to read the first time ("zh" or "en")
-     data-page-lang="en"     for a page that exists once per language (x.html / x-cn.html):
-     data-alt-en="x.html"      the switch then moves between the two files, and 繁體 is the
-     data-alt-zh="x-cn.html"   Chinese file converted
+     data-page-lang="en"     for a page written in one language ("en", "zh-Hans" or "zh-Hant").
+     data-alt-en="x.html"      Where the other language is another file (x.html / x-cn.html), name
+     data-alt-zh="x-cn.html"   it and the switch moves between the files; 繁體 is the 简体 file
+                               converted. A language the page does not have is greyed out.
      data-bar="off"          language only, no menu bar
      data-hant="off"         do not convert the page automatically
      data-z="5"              stacking level of the bar
@@ -28,13 +29,13 @@
   "use strict";
   var K = window.KOG = window.KOG || {};
   if (K.version) return;
-  K.version = "1.0.0";
+  K.version = "1.1.0";
 
   var LANGS = ["en", "zh-Hans", "zh-Hant"];
   var doc = document, me = doc.currentScript;
   var base = me && me.src ? me.src.replace(/[^\/]*([?#].*)?$/, "") : "";
   var opt = (me && me.dataset) || {};
-  var GH = "https://w69gjcn72j-dotcom.github.io/";
+  var GH = "https://w69gjcn72j-dotcom.github.io/", WP = "https://word.kogarah.church/";
 
   /* ---------------------------------------------------------------- menu
      Names are [English, 简体, 繁體]. `zh` is the address of an app's Chinese page, where it has one. */
@@ -43,7 +44,8 @@
     words: {
       menu: ["Menu", "菜单", "選單"],
       language: ["Language", "语言", "語言"],
-      leaders: ["Leaders · passcode", "领袖专用 · 需通行码", "領袖專用 · 需通行碼"]
+      leaders: ["Leaders · passcode", "领袖专用 · 需通行码", "領袖專用 · 需通行碼"],
+      none: ["Not available on this page", "此页面暂无此语言", "此頁面暫無此語言"]
     },
     groups: [
       { id: "glorify", color: "#c0392b", url: "https://glorify.kogarah.church/",
@@ -55,11 +57,13 @@
       { id: "word", color: "#1a5276", url: "https://word.kogarah.church/",
         name: ["Word & Prayer", "圣言与祷告", "聖言與禱告"], team: ["GROW", "成长团队", "成長團隊"],
         apps: [
-          { id: "library", name: ["Seek & Find sermon library", "寻找就寻见 · 讲道库", "尋找就尋見 · 講道庫"], url: "https://word.kogarah.church/library/" },
-          { id: "youth", name: ["KOGYouth Growth Groups", "青少年成长小组查经", "青少年成長小組查經"], url: GH + "kogyouth-studies/", zh: GH + "kogyouth-studies/index-cn.html" },
-          { id: "growth-groups", name: ["KOG Growth Groups", "成人成长小组查经", "成人成長小組查經"], url: GH + "kog-growth-group-studies/", zh: GH + "kog-growth-group-studies/index-cn.html" },
-          { id: "young-adults", name: ["KOG Young Adults", "青年成人查经", "青年成人查經"], url: GH + "kog-young-adults-studies/", zh: GH + "kog-young-adults-studies/index-cn.html" },
-          { id: "nursing-home", name: ["Nursing Home Talks", "安老院短讲", "安老院短講"], url: GH + "nursing-home-talks/", zh: GH + "nursing-home-talks/index-cn.html" }
+          { id: "devotions", name: ["Daily Devotions", "每日灵修", "每日靈修"], url: WP + "devotions/", zh: WP + "daily-devotions-cn.html" },
+          { id: "youth", name: ["KOGYouth Growth Groups", "青少年成长小组查经", "青少年成長小組查經"], url: WP + "studies/youth/", zh: WP + "bible-studies-cn.html?c=ky" },
+          { id: "growth-groups", name: ["KOG Growth Groups", "成人成长小组查经", "成人成長小組查經"], url: WP + "studies/home-groups/", zh: WP + "bible-studies-cn.html?c=gg" },
+          { id: "young-adults", name: ["KOG Young Adults", "青年成人查经", "青年成人查經"], url: WP + "studies/young-adults/", zh: WP + "bible-studies-cn.html?c=ya" },
+          { id: "nursing-home", name: ["Nursing Home Talks", "安老院短讲", "安老院短講"], url: WP + "studies/nursing-home/", zh: WP + "bible-studies-cn.html?c=nh" },
+          { id: "library", name: ["Seek & Find sermon library", "寻找就寻见 · 讲道库", "尋找就尋見 · 講道庫"], url: WP + "library/" },
+          { id: "seven-stars", name: ["Seven Stars", "七星指向耶稣", "七星指向耶穌"], url: WP + "seven-stars/", zh: WP + "seven-stars-cn.html" }
         ] },
       { id: "g7", color: "#1a6b7a", url: GH + "G7KanBan/", lock: true,
         name: ["G7", "G7", "G7"], team: null,
@@ -107,14 +111,27 @@
   if (fromUrl) mem("kog-lang", fromUrl);
 
   function alt(l) { return l === "en" ? opt.altEn : opt.altZh; }
+  function withLang(href, l) {
+    try { var x = new URL(href, doc.baseURI || location.href); x.searchParams.set("lang", l || K.lang); return x.href; } catch (e) { return href; }
+  }
+  /* shown by this very file (繁體 is the 简体 file converted in place) */
+  function here_(l) { return !pageLang || l === pageLang || (pageLang === "zh-Hans" && l === "zh-Hant"); }
+  /* available at all: here, or in the other file */
+  function can(l) {
+    if (here_(l)) return true;
+    if (pageLang === "zh-Hant" && l === "zh-Hans") return false;   /* Traditional to Simplified is not built */
+    return !!alt(l);
+  }
+  K.can = can;
   if (pageLang) {
-    var wantZh = lang !== "en", isZh = pageLang !== "en";
-    if (fromUrl && wantZh !== isZh && alt(lang)) {              /* arrived on the wrong file: move across */
+    if (fromUrl && !here_(fromUrl) && can(fromUrl)) {            /* arrived on the wrong file: move across */
       K.lang = pageLang;
-      location.replace(alt(lang) + "?lang=" + lang);
+      location.replace(withLang(alt(fromUrl), fromUrl));
       return;
     }
-    lang = isZh ? (lang === "zh-Hant" ? "zh-Hant" : "zh-Hans") : "en";   /* show what this file really is */
+    if (!here_(lang)) lang = pageLang;                           /* show what this file really is */
+    /* the reader's language exists as another file, yet they opened this one: that was a choice */
+    if (!fromUrl && saved && (saved === "en") !== (lang === "en") && can(saved)) mem("kog-lang", lang);
   }
   K.lang = lang;
 
@@ -126,10 +143,7 @@
     if (i === 1) return hans == null ? en : hans;
     return hant != null ? hant : (hans == null ? en : K.hant(hans));
   };
-  K.url = function (href, l) {
-    l = l || K.lang;
-    try { var x = new URL(href, location.href); x.searchParams.set("lang", l); return x.href; } catch (e) { return href; }
-  };
+  K.url = withLang;
 
   function announce() {
     var ev;
@@ -139,12 +153,9 @@
   }
   K.setLang = function (l) {
     l = norm(l);
-    if (!l || l === K.lang) return;
+    if (!l || l === K.lang || !can(l)) return;
     mem("kog-lang", l);
-    if (pageLang && (l !== "en") !== (pageLang !== "en")) {     /* the other language is another file */
-      if (alt(l)) location.href = alt(l) + "?lang=" + l;
-      return;
-    }
+    if (!here_(l)) { location.href = withLang(alt(l), l); return; }   /* the other language is another file */
     var was = K.lang;
     K.lang = l;
     if (was === "zh-Hant") leaveHant();
@@ -260,7 +271,7 @@
     if (r) { for (a in r) if (n.getAttribute(a) === r[a].c) n.setAttribute(a, r[a].o); keptAttr.delete(n); }
   }
   function enterHant() {
-    if (!auto) return;
+    if (!auto || pageLang === "zh-Hant") return;                  /* a page written in Traditional needs no converting */
     K.hantReady(function () {
       if (K.lang !== "zh-Hant" || !doc.body) return;
       walk(doc.body, convert);
@@ -309,6 +320,7 @@
     ".lang button{padding:6px 10px;font-size:14px;line-height:1.2;color:#fff}",
     ".lang button+button{border-left:1px solid rgba(255,255,255,.7)}",
     ".lang button[aria-pressed=true]{background:#fff;color:var(--ink)}",
+    ".lang button[aria-disabled=true]{opacity:.42;cursor:default}",
     ".rule{height:3px;background:var(--coral)}",
     ".panel{background:#fff;border-bottom:1px solid #d0d0d0}",
     ".cols{max-width:980px;margin:0 auto;padding:14px max(14px,env(safe-area-inset-right,0px)) 18px max(14px,env(safe-area-inset-left,0px));display:grid;gap:14px 30px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}",
@@ -341,10 +353,13 @@
          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>' +
          "<span>" + h(MENU.home.name[i]) + "</span></button>";
     if (hereGroup) s += '<span class="crumb">' + h(hereGroup.name[i]) + (here ? " › " + h(here.name[i]) : "") + "</span>";
-    s += '<div class="lang" role="group" aria-label="' + h(W.language[i]) + '">' +
-         '<button data-l="en" lang="en" aria-label="English" aria-pressed="' + (i === 0) + '">EN</button>' +
-         '<button data-l="zh-Hans" lang="zh-Hans" aria-label="简体中文" aria-pressed="' + (i === 1) + '">简</button>' +
-         '<button data-l="zh-Hant" lang="zh-Hant" aria-label="繁體中文" aria-pressed="' + (i === 2) + '">繁</button></div>';
+    s += '<div class="lang" role="group" aria-label="' + h(W.language[i]) + '">';
+    [["en", "EN", "English"], ["zh-Hans", "简", "简体中文"], ["zh-Hant", "繁", "繁體中文"]].forEach(function (b, n) {
+      var ok = can(b[0]);
+      s += '<button data-l="' + b[0] + '" lang="' + b[0] + '" aria-pressed="' + (i === n) + '"' +
+           (ok ? ' aria-label="' + b[2] + '"' : ' aria-disabled="true" aria-label="' + h(b[2] + ": " + W.none[i]) + '" title="' + h(W.none[i]) + '"') + ">" + b[1] + "</button>";
+    });
+    s += "</div>";
     s += '</div><div class="rule"></div>';
     s += '<nav class="panel" id="p" aria-label="' + h(MENU.home.name[i]) + '"' + (open ? "" : " hidden") + '><div class="cols">';
     MENU.groups.forEach(function (g) {
@@ -400,7 +415,7 @@
     root.addEventListener("click", function (e) {
       var t = e.target.closest ? e.target.closest("[data-l],#m") : null;
       if (!t) return;
-      if (t.id === "m") toggle(); else K.setLang(t.getAttribute("data-l"));
+      if (t.id === "m") toggle(); else if (t.getAttribute("aria-disabled") !== "true") K.setLang(t.getAttribute("data-l"));
     });
     doc.addEventListener("keydown", function (e) { if (open && e.key === "Escape") toggle(false); });
     doc.addEventListener("click", function (e) { if (open && e.target !== host) toggle(false); });

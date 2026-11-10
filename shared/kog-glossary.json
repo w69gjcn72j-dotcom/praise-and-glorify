@@ -1,5 +1,5 @@
 {
- "_about": "Shared names and terms for the St Paul's Kogarah apps, for review. Chinese is written once in Simplified (hans); Traditional (hant) is produced from it automatically by shared/kog-hant.js. 'hant_overrides' lists the places where the automatic result is replaced. After editing, rebuild with: python3 shared/tools/build_hant.py shared/kog-glossary.json shared/kog-hant.js  (menu names are also set in MENU at the top of kog-shell.js).",
+ "_about": "Shared names and terms for the St Paul's Kogarah apps, for review. Chinese is written once in Simplified (hans); Traditional (hant) is produced from it automatically by shared/kog-hant.js. 'hant_overrides' lists words where the automatic result is replaced, and 'hant_variants' lists single characters whose form is changed everywhere. After editing, rebuild with: python3 shared/tools/build_hant.py shared/kog-glossary.json shared/kog-hant.js  (menu names are also set in MENU at the top of kog-shell.js).",
  "status": "DRAFT - names marked draft:true were proposed by Claude and await David's correction",
  "names": [
   {
@@ -51,6 +51,27 @@
    "hans": "成长团队",
    "hant": "成長團隊",
    "note": "Team name as on the Kanban."
+  },
+  {
+   "id": "devotions",
+   "en": "Daily Devotions",
+   "hans": "每日灵修",
+   "hant": "每日靈修",
+   "note": "Already on the site."
+  },
+  {
+   "id": "seven-stars",
+   "en": "Seven Stars",
+   "hans": "七星指向耶稣",
+   "hant": "七星指向耶穌",
+   "note": "Already on the site."
+  },
+  {
+   "id": "bible-studies",
+   "en": "Bible Studies",
+   "hans": "查经材料",
+   "hant": "查經材料",
+   "note": "Already on the site."
   },
   {
    "id": "library",
@@ -239,7 +260,8 @@
  ],
  "open_questions": [
   "Church name: 高嘉华圣保罗堂 (short, translation glossary) or 高嘉华圣保罗圣公会 (page titles today)? The menu uses the short form.",
-  "Traditional character forms follow Taiwan-standard shapes (裡, 為, 著), matching yungs.au. Say if Hong Kong forms (裏, 着) are preferred."
+  "Traditional character forms follow Taiwan-standard shapes (裡, 為, 著), matching yungs.au. Say if Hong Kong forms (裏, 着) are preferred.",
+  "Adult studies are 'KOG Growth Groups' / 成人成长小组查经 on the old study site but 'Home Groups' / 成人家庭小组查经 on word.kogarah.church. The menu uses Growth Groups; which name should stand?"
  ],
  "hant_overrides": [
   {
@@ -286,6 +308,23 @@
    "hans": "信号",
    "hant": "訊號",
    "why": "Usual word for 'signal' in Traditional"
+  }
+ ],
+ "hant_variants": [
+  {
+   "from": "臺",
+   "to": "台",
+   "why": "講台, 平台, 台灣: the everyday form, and the one on yungs.au"
+  },
+  {
+   "from": "脩",
+   "to": "修",
+   "why": "靈修, not the old form 靈脩"
+  },
+  {
+   "from": "汙",
+   "to": "污",
+   "why": "污穢, as in the 和合本"
   }
  ]
 }
