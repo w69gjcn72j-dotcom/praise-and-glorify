@@ -226,6 +226,7 @@ footer .small{font-size:11px;color:var(--faint);max-width:60ch;letter-spacing:.0
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="data.js"></script>
+<script src="shared/kog-shell.js" data-app="glorify-music" data-legacy-key="pg-lang"></script>
 <script>
 /* ===== Song sets by Sunday — from the 2026 3rd Quarter Roster. Tim adds each new quarter and fills TBC weeks. ===== */
 const PG = window.PG || {SONGS:[],SCHEDULE:[],NOSHEET:[],CRYPTO:{}};
@@ -272,7 +273,10 @@ async function tryUnlock(pw){
 }
 function showLock(){ const on = !!KEY; $("lock").hidden = on; $("unlocked").hidden = !on; }
 let lang = "en", filter = "all";
-try { const s = localStorage.getItem("pg-lang"); if (s === "zh" || s === "en") lang = s; } catch(e){}
+const KOG = window.KOG;                       /* shared menu + language (shared/kog-shell.js) */
+if (KOG && KOG.lang) lang = KOG.lang === "en" ? "en" : "zh";
+else { try { const s = localStorage.getItem("pg-lang"); if (s === "zh" || s === "en") lang = s; } catch(e){} }
+const hant = t => (KOG && KOG.lang === "zh-Hant" && KOG.hant) ? KOG.hant(t) : t;
 const byId = Object.fromEntries(SONGS.map(s => [s.id, s]));
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -326,7 +330,7 @@ function renderWeek(){
 function renderLib(){
   const q = $("q").value.trim().toLowerCase();
   const all = [...SONGS, ...NOSHEET].filter(s => (filter==="all"||s.lib===filter) &&
-    (!q || (s.en||"").toLowerCase().includes(q) || (s.zh||"").includes(q)));
+    (!q || (s.en||"").toLowerCase().includes(q) || (s.zh||"").includes(q) || hant(s.zh||"").includes(q)));
   all.sort((a,b)=> (b.sheet-a.sheet) || primary(a).localeCompare(primary(b), lang==="zh"?"zh-Hans-CN":"en"));
   $("lib").innerHTML = all.length ? all.map(s=>`<li class="${s.sheet?"":"nosheet"}">${songButton(s)}</li>`).join("") : `<li class="empty">${T[lang].none}</li>`;
   $("count").textContent = T[lang].sheets(all.filter(s=>s.sheet).length);
@@ -343,6 +347,7 @@ function applyLang(){ applyLock();
   document.querySelectorAll("[data-i18n]").forEach(el => { const v = T[lang][el.dataset.i18n]; if (typeof v === "string") el.textContent = v; });
   document.querySelectorAll("[data-i18n-ph]").forEach(el => el.placeholder = T[lang][el.dataset.i18nPh]);
   $("lang-en").setAttribute("aria-pressed", lang==="en"); $("lang-zh").setAttribute("aria-pressed", lang==="zh");
+  if (PG.updated) $("updated").textContent = (lang==="zh"?"更新于 ":"Updated ") + PG.updated;
   renderStrip(); renderWeek(); renderLib();
 }
 
@@ -405,8 +410,11 @@ $("lock").addEventListener("submit", async e => {
   else { $("pw-err").textContent = lang==="zh" ? "密码不正确，请再试一次。" : "That password didn't work. Check with the music team leader."; $("pw-err").hidden = false; }
 });
 $("relock").addEventListener("click", () => { KEY = null; try{ localStorage.removeItem("pg-pw"); }catch(e){} showLock(); });
+if (KOG && KOG.lang) {                        /* one switch, in the shared bar */
+  document.querySelector(".top .lang").hidden = true;
+  document.addEventListener("kog:lang", e => { lang = e.detail.zh ? "zh" : "en"; applyLang(); });
+}
 applyLang(); showLock();
-if (PG.updated) $("updated").textContent = (lang==="zh"?"更新于 ":"Updated ") + PG.updated;
 (async () => { let pw = null; try{ pw = localStorage.getItem("pg-pw"); }catch(e){} if (pw && await tryUnlock(pw)) showLock(); })();
 </script>
 

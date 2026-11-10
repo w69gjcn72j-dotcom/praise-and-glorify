@@ -12,3 +12,9 @@ Live: https://w69gjcn72j-dotcom.github.io/praise-and-glorify-music/
 The lead sheets in `s/` are encrypted and open only with the music team password (kept in `.pg-key`, never committed). They come from CCLI SongSelect under the church's CCLI licence (519980) and are for St Paul's Kogarah musicians only.
 
 iPhone: open the link in Safari → Share → Add to Home Screen.
+
+## Shared menu, languages and Chord & Numeral
+
+- `shared/` holds the menu bar and the English / 简体 / 繁體 switch used by every St Paul's Kogarah app. See `shared/README.md`.
+- `chords/` is the Chord & Numeral ear-training app, served at `glorify.kogarah.church/chords/`. It was a separate site (`praise-and-glorify-instrument`) before.
+- Chinese on these pages is written once, in Simplified. Traditional is produced from it automatically; corrections go in `shared/kog-glossary.json`.

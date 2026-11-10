@@ -1,0 +1,288 @@
+{
+ "_about": "Shared names and terms for the St Paul's Kogarah apps, for review. Chinese is written once in Simplified (hans); Traditional (hant) is produced from it automatically by shared/kog-hant.js. 'hant_overrides' lists the places where the automatic result is replaced. After editing, rebuild with: python3 shared/tools/build_hant.py shared/kog-glossary.json shared/kog-hant.js  (menu names are also set in MENU at the top of kog-shell.js).",
+ "status": "DRAFT - names marked draft:true were proposed by Claude and await David's correction",
+ "names": [
+  {
+   "id": "home",
+   "en": "St Paul's Kogarah",
+   "hans": "高嘉华圣保罗堂",
+   "hant": "高嘉華聖保羅堂",
+   "note": "Short form, as in the parish translation glossary. Full form used on page titles today: 高嘉华圣保罗圣公会."
+  },
+  {
+   "id": "glorify",
+   "en": "Praise & Glorify",
+   "hans": "赞美与荣耀",
+   "hant": "讚美與榮耀",
+   "note": "Already on the music app."
+  },
+  {
+   "id": "glorify-team",
+   "en": "GLORIFY",
+   "hans": "荣耀团队",
+   "hant": "榮耀團隊",
+   "note": "Team name as on the Kanban."
+  },
+  {
+   "id": "glorify-music",
+   "en": "Praise & Glorify Music",
+   "hans": "主日诗歌与乐谱",
+   "hant": "主日詩歌與樂譜",
+   "draft": true
+  },
+  {
+   "id": "chords",
+   "en": "Chord & Numeral",
+   "hans": "和弦与级数",
+   "hant": "和弦與級數",
+   "draft": true
+  },
+  {
+   "id": "word",
+   "en": "Word & Prayer",
+   "hans": "圣言与祷告",
+   "hant": "聖言與禱告",
+   "draft": true,
+   "note": "Alternatives: 圣道与祷告, 话语与祷告."
+  },
+  {
+   "id": "grow-team",
+   "en": "GROW",
+   "hans": "成长团队",
+   "hant": "成長團隊",
+   "note": "Team name as on the Kanban."
+  },
+  {
+   "id": "library",
+   "en": "Seek & Find sermon library",
+   "hans": "寻找就寻见 · 讲道库",
+   "hant": "尋找就尋見 · 講道庫",
+   "draft": true,
+   "note": "寻找，就寻见 is Matthew 7:7 in the 和合本."
+  },
+  {
+   "id": "youth",
+   "en": "KOGYouth Growth Groups",
+   "hans": "青少年成长小组查经",
+   "hant": "青少年成長小組查經",
+   "note": "Already on the site."
+  },
+  {
+   "id": "growth-groups",
+   "en": "KOG Growth Groups",
+   "hans": "成人成长小组查经",
+   "hant": "成人成長小組查經",
+   "note": "Already on the site."
+  },
+  {
+   "id": "young-adults",
+   "en": "KOG Young Adults",
+   "hans": "青年成人查经",
+   "hant": "青年成人查經",
+   "note": "Already on the site."
+  },
+  {
+   "id": "nursing-home",
+   "en": "Nursing Home Talks",
+   "hans": "安老院短讲",
+   "hant": "安老院短講",
+   "note": "Already on the site."
+  },
+  {
+   "id": "g7",
+   "en": "G7",
+   "hans": "G7",
+   "hant": "G7"
+  },
+  {
+   "id": "kanban",
+   "en": "Kanban Board",
+   "hans": "G7 看板",
+   "hant": "G7 看板",
+   "note": "Already on the Term Diary."
+  },
+  {
+   "id": "cycle",
+   "en": "The KOGCycle",
+   "hans": "KOG 循环",
+   "hant": "KOG 循環",
+   "draft": true
+  },
+  {
+   "id": "diary",
+   "en": "Term Diary",
+   "hans": "学期日程",
+   "hant": "學期日程",
+   "note": "Already on the music app."
+  },
+  {
+   "id": "planner",
+   "en": "Year Planner",
+   "hans": "年度计划表",
+   "hant": "年度計劃表",
+   "note": "Already on the Term Diary."
+  },
+  {
+   "id": "roster",
+   "en": "Roster",
+   "hans": "服事轮值表",
+   "hant": "服事輪值表",
+   "note": "Parish translation glossary: 服事, never 服務."
+  },
+  {
+   "id": "leaders",
+   "en": "Leaders · passcode",
+   "hans": "领袖专用 · 需通行码",
+   "hant": "領袖專用 · 需通行碼",
+   "draft": true
+  },
+  {
+   "id": "kingdom",
+   "en": "Kingdom Work",
+   "hans": "国度事工",
+   "hant": "國度事工",
+   "draft": true
+  },
+  {
+   "id": "sydacm",
+   "en": "Sydney Anglicans Chinese Ministry",
+   "hans": "悉尼圣公会华文事工",
+   "hant": "雪梨聖公會華文事工",
+   "note": "Simplified as on the SYDACM site. Traditional uses 雪梨 per the parish translation glossary - confirm SYDACM's own Traditional name."
+  },
+  {
+   "id": "cross-cultural",
+   "en": "Cross-cultural ministry",
+   "hans": "跨文化事工",
+   "hant": "跨文化事工",
+   "note": "Already on yungs.au."
+  }
+ ],
+ "terms": [
+  {
+   "en": "sermon",
+   "hans": "讲道",
+   "hant": "講道"
+  },
+  {
+   "en": "Bible study",
+   "hans": "查经",
+   "hant": "查經"
+  },
+  {
+   "en": "growth group",
+   "hans": "成长小组",
+   "hant": "成長小組"
+  },
+  {
+   "en": "service (ministry)",
+   "hans": "服事",
+   "hant": "服事",
+   "note": "never 服务 / 服務"
+  },
+  {
+   "en": "roster",
+   "hans": "服事轮值表",
+   "hant": "服事輪值表"
+  },
+  {
+   "en": "music team",
+   "hans": "音乐同工",
+   "hant": "音樂同工",
+   "note": "as on the music app"
+  },
+  {
+   "en": "lead sheet",
+   "hans": "旋律和弦谱 / 乐谱",
+   "hant": "旋律和弦譜 / 樂譜",
+   "note": "as on the music app"
+  },
+  {
+   "en": "chord",
+   "hans": "和弦",
+   "hant": "和弦"
+  },
+  {
+   "en": "numeral / degree",
+   "hans": "级数",
+   "hant": "級數"
+  },
+  {
+   "en": "numbered notation",
+   "hans": "简谱",
+   "hant": "簡譜"
+  },
+  {
+   "en": "key (major / minor)",
+   "hans": "大调 / 小调",
+   "hant": "大調 / 小調"
+  },
+  {
+   "en": "major / minor chord",
+   "hans": "大三和弦 / 小三和弦",
+   "hant": "大三和弦 / 小三和弦"
+  },
+  {
+   "en": "borrowed chord",
+   "hans": "借用和弦",
+   "hant": "借用和弦"
+  },
+  {
+   "en": "ear training",
+   "hans": "听力训练",
+   "hant": "聽力訓練"
+  }
+ ],
+ "open_questions": [
+  "God: saved writing preference says 神 (with 祂); the parish translation glossary says 上帝. The Colossians 3:16 line in Chord & Numeral currently uses 神 (和合本 神版).",
+  "Church name: 高嘉华圣保罗堂 (short, translation glossary) or 高嘉华圣保罗圣公会 (page titles today)? The menu uses the short form.",
+  "Traditional character forms follow Taiwan-standard shapes (裡, 為, 著), matching yungs.au. Say if Hong Kong forms (裏, 着) are preferred."
+ ],
+ "hant_overrides": [
+  {
+   "hans": "悉尼",
+   "hant": "雪梨",
+   "why": "Parish translation glossary: Sydney is 雪梨 for Traditional readers"
+  },
+  {
+   "hans": "和弦",
+   "hant": "和弦",
+   "why": "The automatic table gives the older form 和絃; musicians write 和弦"
+  },
+  {
+   "hans": "扫弦",
+   "hant": "掃弦",
+   "why": "as above"
+  },
+  {
+   "hans": "弦乐",
+   "hant": "弦樂",
+   "why": "as above"
+  },
+  {
+   "hans": "搜索",
+   "hant": "搜尋",
+   "why": "Usual word for 'search' on Traditional-language screens"
+  },
+  {
+   "hans": "应用程序",
+   "hant": "應用程式",
+   "why": "Usual word for 'app' in Traditional"
+  },
+  {
+   "hans": "屏幕",
+   "hant": "螢幕",
+   "why": "Usual word for 'screen' in Traditional"
+  },
+  {
+   "hans": "链接",
+   "hant": "連結",
+   "why": "Usual word for 'link' in Traditional"
+  },
+  {
+   "hans": "信号",
+   "hant": "訊號",
+   "why": "Usual word for 'signal' in Traditional"
+  }
+ ]
+}

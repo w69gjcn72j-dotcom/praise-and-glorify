@@ -1,3 +1,4 @@
 .pg-key
 .DS_Store
 __pycache__/
+shared/*.table.json
