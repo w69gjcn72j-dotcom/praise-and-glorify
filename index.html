@@ -272,6 +272,20 @@ async function tryUnlock(pw){
   try { const k = await deriveKey(pw); await decrypt(k, hex(CRYPTO.check)); KEY = k; return true; } catch(e){ return false; }
 }
 function showLock(){ const on = !!KEY; $("lock").hidden = on; $("unlocked").hidden = !on; }
+/* Who is playing, and the team's notes, are for the team only. They are kept encrypted beside the
+   lead sheets (s/_team.bin) and read once the password has unlocked this device. */
+let TEAM = {};
+const team = w => TEAM[w.d] || {};
+async function loadTeam(){
+  TEAM = {};
+  if (KEY) {
+    try {
+      const res = await fetch("s/_team.bin", {cache:"no-cache"});
+      if (res.ok) TEAM = JSON.parse(new TextDecoder().decode(await decrypt(KEY, await res.arrayBuffer()))) || {};
+    } catch(e){ TEAM = {}; }
+  }
+  renderWeek();
+}
 let lang = "en", filter = "all";
 const KOG = window.KOG;                       /* shared menu + language (shared/kog-shell.js) */
 if (KOG && KOG.lang) lang = KOG.lang === "en" ? "en" : "zh";
@@ -317,13 +331,13 @@ function renderWeek(){
   $("week-date").textContent = fmtDay(w.d);
   const typ = lang==="zh" ? zhType(w.type) : w.type;
   const pas = lang==="zh" ? zhPassage(w.passage) : w.passage;
-  $("week-meta").innerHTML = (w.notes?`<span class="label">${esc(w.notes)}</span>`:"") + `<span class="label gold">${esc(typ)}</span><span class="label">${T[lang].passage} <b class="${lang==="zh"?"zh":""}">${esc(pas)}</b></span>`;
-  const cards = [{ h: combined ? (lang==="zh"?"联合崇拜 · 英文音乐团队":"Combined service · English music team") : (lang==="zh"?"9:15 英文堂":"9:15am English"), m:w.mEn, list:w.en }];
-  if (!combined) cards.push({ h: lang==="zh"?"9:00 中文堂":"9:00am Chinese", m:w.mCn, list:w.cn });
+  $("week-meta").innerHTML = (team(w).notes?`<span class="label">${esc(team(w).notes)}</span>`:"") + `<span class="label gold">${esc(typ)}</span><span class="label">${T[lang].passage} <b class="${lang==="zh"?"zh":""}">${esc(pas)}</b></span>`;
+  const cards = [{ h: combined ? (lang==="zh"?"联合崇拜 · 英文音乐团队":"Combined service · English music team") : (lang==="zh"?"9:15 英文堂":"9:15am English"), m:team(w).en, list:w.en }];
+  if (!combined) cards.push({ h: lang==="zh"?"9:00 中文堂":"9:00am Chinese", m:team(w).cn, list:w.cn });
   $("services").innerHTML = cards.map(c=>`<div class="svc"><h3>${esc(c.h)}</h3>${c.m?`<p class="who"><span>${lang==="zh"?"乐手":"Musicians"}</span> ${esc(c.m)}</p>`:""}${setList(c.list)}</div>`).join("");
   $("quarter").innerHTML = SCHEDULE.filter(x => x.d >= TODAY && x !== WEEK).map(x => {
     const songs = (x.en||[]).map(resolve).filter(Boolean);
-    return `<li><div class="qd"><b>${esc(fmtDay(x.d).replace(/^\w+day, /,""))}</b><span>${esc(lang==="zh"?zhType(x.type):x.type)}</span><span>${esc(x.mEn||"")}</span></div>
+    return `<li><div class="qd"><b>${esc(fmtDay(x.d).replace(/^\w+day, /,""))}</b><span>${esc(lang==="zh"?zhType(x.type):x.type)}</span><span>${esc(team(x).en||"")}</span></div>
       <div class="qs">${songs.length ? songs.map(s => s.sheet ? `<button class="qsong" data-id="${s.id}">${esc(primary(s))} <i>${esc(s.key)}</i></button>` : `<span class="qsong off">${esc(primary(s))}</span>`).join("") : `<span class="tbc">${T[lang].tbc}</span>`}</div></li>`;
   }).join("");
 }
@@ -406,16 +420,16 @@ $("lock").addEventListener("submit", async e => {
   $("pw-go").disabled = true; $("pw-err").hidden = true;
   const ok = await tryUnlock(pw);
   $("pw-go").disabled = false;
-  if (ok){ try{ localStorage.setItem("pg-pw", pw); }catch(e){} $("pw").value = ""; showLock(); }
+  if (ok){ try{ localStorage.setItem("pg-pw", pw); }catch(e){} $("pw").value = ""; showLock(); loadTeam(); }
   else { $("pw-err").textContent = lang==="zh" ? "密码不正确，请再试一次。" : "That password didn't work. Check with the music team leader."; $("pw-err").hidden = false; }
 });
-$("relock").addEventListener("click", () => { KEY = null; try{ localStorage.removeItem("pg-pw"); }catch(e){} showLock(); });
+$("relock").addEventListener("click", () => { KEY = null; try{ localStorage.removeItem("pg-pw"); }catch(e){} showLock(); loadTeam(); });
 if (KOG && KOG.lang) {                        /* one switch, in the shared bar */
   document.querySelector(".top .lang").hidden = true;
   document.addEventListener("kog:lang", e => { lang = e.detail.zh ? "zh" : "en"; applyLang(); });
 }
 applyLang(); showLock();
-(async () => { let pw = null; try{ pw = localStorage.getItem("pg-pw"); }catch(e){} if (pw && await tryUnlock(pw)) showLock(); })();
+(async () => { let pw = null; try{ pw = localStorage.getItem("pg-pw"); }catch(e){} if (pw && await tryUnlock(pw)) { showLock(); loadTeam(); } })();
 </script>
 
 </body>

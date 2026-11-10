@@ -18,3 +18,4 @@ iPhone: open the link in Safari → Share → Add to Home Screen.
 - `shared/` holds the menu bar and the English / 简体 / 繁體 switch used by every St Paul's Kogarah app. See `shared/README.md`.
 - `chords/` is the Chord & Numeral ear-training app, served at `glorify.kogarah.church/chords/`. It was a separate site (`praise-and-glorify-instrument`) before.
 - Chinese on these pages is written once, in Simplified. Traditional is produced from it automatically; corrections go in `shared/kog-glossary.json`.
+- Musicians' names and the team's notes are never written to `data.js`, which anyone can read. `tools/build.py` puts them in `s/_team.bin`, encrypted with the team password, and the page shows them only after unlocking.

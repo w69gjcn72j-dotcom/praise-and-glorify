@@ -8,7 +8,8 @@ Reads
 Writes (inside the site folder)
   s/<id>.bin      lead sheets, AES-GCM encrypted with the team password
   s/index.json    source hashes, so unchanged sheets are not re-encrypted
-  data.js         everything the page shows
+  s/_team.bin     who is playing each Sunday and the team's notes, encrypted with the same password
+  data.js         everything the page shows without the password (no names)
 It also adds any new lead sheet to the Library sheet so a Chinese title can be filled in.
 
 The team password lives in .pg-key next to this script's site folder (never committed).
@@ -161,7 +162,7 @@ def main():
             return {"en": o["en"], "zh": o["zh"]}
         return {"en": "", "zh": t} if cjk(t) else {"en": t, "zh": ""}
 
-    schedule = []
+    schedule, team = [], {}
     for r in sun_ws.iter_rows(min_row=2, values_only=True):
         if not r or not r[0]:
             continue
@@ -177,13 +178,18 @@ def main():
         schedule.append({
             "d": d.isoformat(), "type": (r[1] or "").strip() if r[1] else "",
             "passage": (r[2] or "").strip() if r[2] else "",
-            "mEn": (r[3] or "").strip() if r[3] else "",
             "en": [resolve(x) for x in r[4:8] if x and str(x).strip()],
-            "mCn": (r[8] or "").strip() if r[8] else "",
             "cn": [resolve(x) for x in r[9:13] if x and str(x).strip()],
-            "notes": (r[13] or "").strip() if len(r) > 13 and r[13] else "",
         })
+        # Musicians and notes name people, so they never go in data.js (which anyone can read).
+        # They are written to s/_team.bin, encrypted, and the page shows them only after unlocking.
+        who = {"en": (r[3] or "").strip() if r[3] else "",
+               "cn": (r[8] or "").strip() if r[8] else "",
+               "notes": (r[13] or "").strip() if len(r) > 13 and r[13] else ""}
+        if any(who.values()):
+            team[d.isoformat()] = who
     schedule.sort(key=lambda w: w["d"])
+    open(os.path.join(OUT, "_team.bin"), "wb").write(enc(json.dumps(team, ensure_ascii=False).encode("utf-8")))
 
     # ---- Add new lead sheets to the Library sheet
     if new_files:
@@ -207,7 +213,7 @@ def main():
     js += "window.PG = " + json.dumps(data, ensure_ascii=False, indent=1) + ";\n"
     open(os.path.join(SITE, "data.js"), "w", encoding="utf-8").write(js)
 
-    print(f"Lead sheets: {len(songs)}  Sundays: {len(schedule)}  New lead sheets: {len(new_files)}")
+    print(f"Lead sheets: {len(songs)}  Sundays: {len(schedule)}  New lead sheets: {len(new_files)}  Team details (encrypted): {len(team)} Sundays")
     for f, _ in new_files:
         print("  + new:", f)
     for t in sorted(unmatched):
