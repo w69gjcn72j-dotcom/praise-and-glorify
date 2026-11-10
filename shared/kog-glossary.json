@@ -89,11 +89,11 @@
    "note": "Already on the site."
   },
   {
-   "id": "growth-groups",
-   "en": "KOG Growth Groups",
-   "hans": "成人成长小组查经",
-   "hant": "成人成長小組查經",
-   "note": "Already on the site."
+   "id": "home-groups",
+   "en": "Home Groups",
+   "hans": "成人家庭小组查经",
+   "hant": "成人家庭小組查經",
+   "note": "David's decision, 10 Nov 2026. As on word.kogarah.church."
   },
   {
    "id": "young-adults",
@@ -193,7 +193,8 @@
   {
    "en": "growth group",
    "hans": "成长小组",
-   "hant": "成長小組"
+   "hant": "成長小組",
+   "note": "the general term; the adult study collection itself is named Home Groups / 成人家庭小组查经"
   },
   {
    "en": "service (ministry)",
@@ -256,12 +257,12 @@
  ],
  "decisions": [
   "God is 神, with 祂 as the pronoun (David, 10 Nov 2026). The Colossians 3:16 line in Chord & Numeral uses 神.",
-  "Footer website is www.stpaulskogarah.com (David, 10 Nov 2026)."
+  "Footer website is www.stpaulskogarah.com (David, 10 Nov 2026).",
+  "The adult studies are 'Home Groups' / 成人家庭小组查经, not 'KOG Growth Groups' (David, 10 Nov 2026)."
  ],
  "open_questions": [
   "Church name: 高嘉华圣保罗堂 (short, translation glossary) or 高嘉华圣保罗圣公会 (page titles today)? The menu uses the short form.",
-  "Traditional character forms follow Taiwan-standard shapes (裡, 為, 著), matching yungs.au. Say if Hong Kong forms (裏, 着) are preferred.",
-  "Adult studies are 'KOG Growth Groups' / 成人成长小组查经 on the old study site but 'Home Groups' / 成人家庭小组查经 on word.kogarah.church. The menu uses Growth Groups; which name should stand?"
+  "Traditional character forms follow Taiwan-standard shapes (裡, 為, 著), matching yungs.au. Say if Hong Kong forms (裏, 着) are preferred."
  ],
  "hant_overrides": [
   {

@@ -29,7 +29,7 @@
   "use strict";
   var K = window.KOG = window.KOG || {};
   if (K.version) return;
-  K.version = "1.1.0";
+  K.version = "1.1.1";
 
   var LANGS = ["en", "zh-Hans", "zh-Hant"];
   var doc = document, me = doc.currentScript;
@@ -59,7 +59,7 @@
         apps: [
           { id: "devotions", name: ["Daily Devotions", "每日灵修", "每日靈修"], url: WP + "devotions/", zh: WP + "daily-devotions-cn.html" },
           { id: "youth", name: ["KOGYouth Growth Groups", "青少年成长小组查经", "青少年成長小組查經"], url: WP + "studies/youth/", zh: WP + "bible-studies-cn.html?c=ky" },
-          { id: "growth-groups", name: ["KOG Growth Groups", "成人成长小组查经", "成人成長小組查經"], url: WP + "studies/home-groups/", zh: WP + "bible-studies-cn.html?c=gg" },
+          { id: "home-groups", name: ["Home Groups", "成人家庭小组查经", "成人家庭小組查經"], url: WP + "studies/home-groups/", zh: WP + "bible-studies-cn.html?c=gg" },
           { id: "young-adults", name: ["KOG Young Adults", "青年成人查经", "青年成人查經"], url: WP + "studies/young-adults/", zh: WP + "bible-studies-cn.html?c=ya" },
           { id: "nursing-home", name: ["Nursing Home Talks", "安老院短讲", "安老院短講"], url: WP + "studies/nursing-home/", zh: WP + "bible-studies-cn.html?c=nh" },
           { id: "library", name: ["Seek & Find sermon library", "寻找就寻见 · 讲道库", "尋找就尋見 · 講道庫"], url: WP + "library/" },
