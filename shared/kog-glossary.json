@@ -253,6 +253,112 @@
    "en": "ear training",
    "hans": "听力训练",
    "hant": "聽力訓練"
+  },
+  {
+   "en": "Go (G7 team)",
+   "hans": "差派团队",
+   "hant": "差派團隊",
+   "draft": true
+  },
+  {
+   "en": "Glorify (G7 team)",
+   "hans": "荣耀团队",
+   "hant": "榮耀團隊",
+   "draft": true
+  },
+  {
+   "en": "Grow (G7 team)",
+   "hans": "成长团队",
+   "hant": "成長團隊",
+   "draft": true,
+   "note": "The Term Diary said 增长团队 until 11 Nov 2026; it now says 成长团队, like the glossary, the menu and the Kanban email."
+  },
+  {
+   "en": "Giftedness (G7 team)",
+   "hans": "恩赐团队",
+   "hant": "恩賜團隊",
+   "draft": true
+  },
+  {
+   "en": "Governance (G7 team)",
+   "hans": "治理团队",
+   "hant": "治理團隊",
+   "draft": true
+  },
+  {
+   "en": "Glue (G7 team)",
+   "hans": "后勤团队",
+   "hant": "後勤團隊",
+   "draft": true
+  },
+  {
+   "en": "Gregarious (G7 team)",
+   "hans": "关怀团队",
+   "hant": "關懷團隊",
+   "draft": true
+  },
+  {
+   "en": "First Contact (KOGCycle 1)",
+   "hans": "初次接触",
+   "hant": "初次接觸",
+   "draft": true
+  },
+  {
+   "en": "Face to Face (KOGCycle 2)",
+   "hans": "面对面",
+   "hant": "面對面",
+   "draft": true
+  },
+  {
+   "en": "Follow Up (KOGCycle 3)",
+   "hans": "跟进",
+   "hant": "跟進",
+   "draft": true
+  },
+  {
+   "en": "Meet the Minister (KOGCycle 4)",
+   "hans": "认识牧师",
+   "hant": "認識牧師",
+   "draft": true,
+   "note": "As in the Term Diary. The Kanban email says 与牧师会面."
+  },
+  {
+   "en": "Conversion, Baptism & Confirmation (KOGCycle 5)",
+   "hans": "归主、洗礼与坚信礼",
+   "hant": "歸主、洗禮與堅信禮",
+   "draft": true
+  },
+  {
+   "en": "Integration (KOGCycle 6)",
+   "hans": "融入",
+   "hant": "融入",
+   "draft": true
+  },
+  {
+   "en": "Church Life (KOGCycle 7)",
+   "hans": "教会生活",
+   "hant": "教會生活",
+   "draft": true
+  },
+  {
+   "en": "Grow & Serve (KOGCycle 8)",
+   "hans": "成长与服事",
+   "hant": "成長與服事",
+   "draft": true
+  },
+  {
+   "en": "Send (KOGCycle 9)",
+   "hans": "差派",
+   "hant": "差派",
+   "draft": true,
+   "note": "As in the Term Diary. The Kanban email says 差遣."
+  },
+  {
+   "en": "passcode",
+   "hans": "通行码",
+   "hant": "通行碼",
+   "draft": true,
+   "note": "The G7 pages used 密码 on the Term Diary and Roster passcode screens."
   }
  ],
  "decisions": [
@@ -262,7 +368,9 @@
  ],
  "open_questions": [
   "Church name: 高嘉华圣保罗堂 (short, translation glossary) or 高嘉华圣保罗圣公会 (page titles today)? The menu uses the short form.",
-  "Traditional character forms follow Taiwan-standard shapes (裡, 為, 著), matching yungs.au. Say if Hong Kong forms (裏, 着) are preferred."
+  "Traditional character forms follow Taiwan-standard shapes (裡, 為, 著), matching yungs.au. Say if Hong Kong forms (裏, 着) are preferred.",
+  "The Kanban's reminder emails (and the pictures attached to them) are written in Traditional Chinese, separately from the page. Keep them Traditional, move them to Simplified, or send each person the form they read? (Asked 11 Nov 2026.)",
+  "Grow team in Chinese: all G7 pages now say 成长团队 (the Term Diary said 增长团队 until 11 Nov 2026). Confirm, or say which you prefer."
  ],
  "hant_overrides": [
   {
