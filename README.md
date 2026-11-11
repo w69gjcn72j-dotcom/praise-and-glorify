@@ -19,3 +19,4 @@ iPhone: open the link in Safari → Share → Add to Home Screen.
 - `chords/` is the Chord & Numeral ear-training app, served at `glorify.kogarah.church/chords/`. It was a separate site (`praise-and-glorify-instrument`) before.
 - Chinese on these pages is written once, in Simplified. Traditional is produced from it automatically; corrections go in `shared/kog-glossary.json`.
 - Musicians' names and the team's notes are never written to `data.js`, which anyone can read. `tools/build.py` puts them in `s/_team.bin`, encrypted with the team password, and the page shows them only after unlocking.
+- `hub/` is the Ministry Hub, served at `glorify.kogarah.church/hub/`: one page listing every app in both sets (St Paul's Kogarah, Kingdom Work) with the languages each has. It is a working page for whoever looks after the apps, hidden from search engines and not linked from the shared menu.
