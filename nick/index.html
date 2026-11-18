@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nick Hadges, Scripture at Bayside High</title>
+<meta name="description" content="Nick Hadges serves as a Scripture teacher and chaplain in the St George area. Read his latest update, pray, and give.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: one calm single column, large type, give and pray actions up top and repeated at the end. */
+:root{
+  --teal:#1A6B7A;
+  --teal-ink:#134F5B;
+  --coral:#E8724A;
+  --coral-ink:#A93A16;
+  --bg:#FFFFFF;
+  --surface:#F1F6F7;
+  --text:#1B2A2E;
+  --muted:#4A5C61;
+  --line:#C9D8DB;
+  --on-teal:#FFFFFF;
+  --font:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --teal:#6FC3D1;--teal-ink:#9BDAE4;--coral-ink:#FF9C7A;
+    --bg:#10191B;--surface:#18272B;--text:#EAF1F2;--muted:#B3C4C8;--line:#2C4247;--on-teal:#0B1517;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --teal:#6FC3D1;--teal-ink:#9BDAE4;--coral-ink:#FF9C7A;
+  --bg:#10191B;--surface:#18272B;--text:#EAF1F2;--muted:#B3C4C8;--line:#2C4247;--on-teal:#0B1517;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{font-size:112.5%;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.1rem}
+h1,h2,h3{font-weight:700;line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:2.3rem;color:var(--teal-ink)}
+h2{font-size:1.5rem;color:var(--teal-ink);margin-bottom:.6rem}
+h3{font-size:1.15rem;margin-bottom:.25rem}
+p{margin:0 0 1rem;max-width:65ch}
+a{color:var(--teal-ink);text-underline-offset:.15em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--coral-ink);outline-offset:3px;border-radius:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--teal);color:var(--on-teal);padding:.7rem 1rem;z-index:10}
+.skip:focus{left:.5rem;top:.5rem}
+header.hero{border-top:.5rem solid var(--coral);background:var(--surface);padding:2rem 0 1.8rem}
+.kicker{font-size:.95rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--coral-ink);margin:0 0 .4rem}
+.lead{font-size:1.2rem;color:var(--text);margin:.8rem 0 1.2rem}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem}
+.btn{display:inline-block;padding:.8rem 1.3rem;border-radius:.5rem;font-weight:700;font-size:1.05rem;text-decoration:none;min-height:2.75rem;border:2px solid var(--teal)}
+.btn.primary{background:var(--teal);color:var(--on-teal)}
+.btn.secondary{background:transparent;color:var(--teal-ink)}
+.btn:hover{filter:brightness(1.08)}
+section{padding:2rem 0;border-bottom:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.8rem;margin:1.2rem 0 0;padding:0;list-style:none}
+.stats li{background:var(--surface);border-left:.35rem solid var(--coral);border-radius:.4rem;padding:.8rem 1rem}
+.stats strong{display:block;font-size:2rem;line-height:1.1;color:var(--teal-ink);font-variant-numeric:tabular-nums}
+.stats span{font-size:.95rem;color:var(--muted)}
+.verse{border-left:.35rem solid var(--teal);padding:.2rem 0 .2rem 1rem;margin:1.2rem 0;font-size:1.1rem}
+.verse cite{display:block;font-style:normal;font-weight:700;color:var(--muted);font-size:.95rem;margin-top:.2rem}
+ul.pray{padding-left:1.2rem;margin:0 0 1rem;max-width:65ch}
+ul.pray li{margin-bottom:.6rem}
+.timeline{list-style:none;padding:0;margin:0;display:grid;gap:1rem}
+.timeline li{background:var(--surface);border-radius:.5rem;padding:1rem 1.1rem}
+.timeline time{font-weight:700;color:var(--coral-ink)}
+.timeline p{margin:.3rem 0 .6rem}
+.give{background:var(--surface);border-radius:.6rem;padding:1.3rem 1.2rem;margin-top:1rem}
+dl.ways{margin:1rem 0 0;display:grid;gap:.9rem}
+dl.ways dt{font-weight:700}
+dl.ways dd{margin:0}
+.small{font-size:.95rem;color:var(--muted)}
+footer{padding:1.6rem 0 3rem;font-size:.95rem;color:var(--muted)}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:1.4rem;align-items:center}
+@media (min-width:44rem){.hero-grid{grid-template-columns:1.4fr 1fr}}
+.portrait{margin:0}
+.portrait img{display:block;width:100%;height:auto;border-radius:.6rem;border:.3rem solid var(--coral)}
+.portrait figcaption{font-size:.9rem;color:var(--muted);margin-top:.4rem}
+.brand{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+.brand img{height:4.2rem;width:auto;background:#fff;border-radius:.5rem;padding:.3rem}
+.brand span{font-size:.95rem;color:var(--muted);max-width:16rem;line-height:1.3}
+.photo{margin:0 0 .8rem}
+.photo img{display:block;width:100%;max-width:26rem;height:auto;border-radius:.5rem}
+.photo figcaption{font-size:.9rem;color:var(--muted);margin-top:.3rem}
+.photo img.zone{background:#fff;padding:.4rem;border:1px solid var(--line)}
+.footer-logo{height:5rem;width:auto;background:#fff;border-radius:.5rem;padding:.4rem;margin-bottom:.8rem}
+@media (max-width:30rem){h1{font-size:1.9rem}.btn{width:100%;text-align:center}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.skip,.actions{display:none}header.hero{background:none}a{color:#000}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <img src="bayside-logo.png" alt="Bayside Christian Education Board logo: a water drop with a leaf">
+      <span>Overseen by the Bayside Christian Education Board</span>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <p class="kicker">Scripture ministry, St George area</p>
+        <h1>Nick Hadges</h1>
+        <p class="lead">Nick teaches Scripture and serves as chaplain at Bayside High School. His hope is to see a generation of young people in the St George community come to know Jesus.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://su.org.au/donate/bayside-christian-education-board-tax-deductible/">Give (tax deductible)</a>
+          <a class="btn secondary" href="#latest">Read the latest update</a>
+          <a class="btn secondary" href="#pray">Pray for Nick</a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <img src="nick-portrait.jpg" width="622" height="400" alt="Nick Hadges smiling, in front of the Bayside High School wall">
+        <figcaption>Nick Hadges at Bayside High School</figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+<section aria-labelledby="who">
+  <h2 id="who">What Nick does</h2>
+  <p>Nick and his wife Lindy have served young people in the schools of the St George area for many years. Each week Nick opens the Bible with students in Scripture (SRE) classes. He also leads a lunchtime group for senior students, runs an internship that trains new Scripture teachers, and goes on school camps as chaplain.</p>
+  <p>His work is overseen by the Bayside Christian Education Board, which is made up of churches from different denominations across the Bayside area. The Board oversees Scripture classes at three schools:</p>
+  <ul class="pray">
+    <li>Bayside High School</li>
+    <li>St George Girls High School</li>
+    <li>St George School for special needs</li>
+  </ul>
+  <ul class="stats" aria-label="Key figures from Nick's updates">
+    <li><strong>124</strong><span>students in Years 7 to 11 attend Scripture classes (August 2026)</span></li>
+    <li><strong>23</strong><span>Year 7 camps in a row that Nick has attended as chaplain</span></li>
+    <li><strong>20,000+</strong><span>breakfasts served to students through local churches since 2009</span></li>
+    <li><strong>500</strong><span>students across our three schools is the Board's goal</span></li>
+  </ul>
+</section>
+
+<section id="latest" aria-labelledby="latest-h">
+  <p class="kicker">August 2026</p>
+  <h2 id="latest-h">The latest update</h2>
+  <p>After a difficult start to the year at the newly merged Bayside High, Scripture classes are now running well. Scripture is in the school timetable this year, so classes are no longer clashing with other activities.</p>
+  <p>Year 11 students are engaged and asking thoughtful questions. Year 7 is the most challenging class, so Nick is praying for ways to build real relationships with them. At the end of last term Nick went to the Year 7 camp at Stanwell Tops, where some of his best gospel conversations happen.</p>
+  <p>A Year 10 student recently told Nick he had committed his life to Jesus. He prayed a prayer of repentance with his family and felt deep joy in knowing he belonged to God.</p>
+  <p>More families are choosing Scripture, and numbers are higher than they have been for many years. That means more teachers are needed. A volunteer from a local church has joined Nick in teaching, and his intern has started teaching her own classes.</p>
+  <blockquote class="verse">
+    <p>“Be strong and courageous… for the Lord your God goes with you.”</p>
+    <cite>Deuteronomy 31:6</cite>
+  </blockquote>
+  <p><a href="nicks-notes-august-2026.pdf">Read the full August 2026 newsletter (PDF)</a></p>
+</section>
+
+<section id="pray" aria-labelledby="pray-h">
+  <h2 id="pray-h">How to pray</h2>
+  <ul class="pray">
+    <li><strong>Relationships with students.</strong> Pray especially for Year 7, that the challenges become opportunities to build real relationships.</li>
+    <li><strong>Students responding to Jesus.</strong> Pray for those asking questions and exploring Christianity, and for the Year 10 student who recently trusted Jesus, that he keeps growing.</li>
+    <li><strong>Those serving in the school.</strong> Pray for the volunteers and the intern giving their time, that God grows their confidence, wisdom and love for students.</li>
+    <li><strong>More Scripture teachers.</strong> Pray that God raises up people willing and equipped to teach as more families choose Scripture.</li>
+  </ul>
+  <p class="small">When you see a school zone, remember to pray for Scripture in our schools.</p>
+  <figure class="photo"><img class="zone" src="school-zone.png" width="488" height="243" loading="lazy" alt="A 40 kilometre per hour school zone sign next to the words Slow down and pray"></figure>
+</section>
+
+<section aria-labelledby="story">
+  <h2 id="story">The story so far</h2>
+  <ol class="timeline">
+    <li>
+      <time datetime="2024-12">December 2024</time>
+      <h3>About 116 students across Years 7 to 10</h3>
+      <figure class="photo"><img src="nick-hampers.jpg" width="334" height="323" loading="lazy" alt="Nick crouching beside a large bag of Christmas hampers"><figcaption>Christmas hampers ready for needy families through Cornerstone Kogarah</figcaption></figure>
+      <p>Nick taught at James Cook Boys High and Moorefield Girls High. A Year 11 student who called himself an atheist began reading the Bible and came to trust Jesus from Romans 10:9. The Year 11 camp at Katoomba saw unusual interest in the gospel. The two schools were due to merge in 2026.</p>
+      <a href="nicks-notes-december-2024.pdf">Full newsletter (PDF)</a>
+    </li>
+    <li>
+      <time datetime="2026-05">May 2026</time>
+      <h3>Scripture begins at the new Bayside High</h3>
+      <figure class="photo"><img src="nick-breakfast.jpg" width="750" height="494" loading="lazy" alt="Nick preparing breakfast cereals at the school breakfast club"><figcaption>Nick at the school breakfast club, which closed after more than 20,000 breakfasts</figcaption></figure>
+      <p>The merged school of over 900 students delayed classes through Term 1, and students kept asking Nick when Scripture would start. Classes began in Term 2 with more than 150 students in Combined Scripture and 50 more in Orthodox Scripture. Year 11 was included for the first time. The school breakfast club, which Nick ran in partnership with local churches since 2009, came to an end.</p>
+      <a href="nicks-notes-may-2026.pdf">Full newsletter (PDF)</a>
+    </li>
+    <li>
+      <time datetime="2026-08">August 2026</time>
+      <h3>Classes settle, and more teachers are needed</h3>
+      <p>Scripture is now in the timetable. A Year 10 student has committed his life to Jesus. New teachers are joining Nick, and he is asking for prayer for more.</p>
+      <a href="nicks-notes-august-2026.pdf">Full newsletter (PDF)</a>
+    </li>
+  </ol>
+</section>
+
+<section id="give" aria-labelledby="give-h">
+  <h2 id="give-h">Partner with Nick</h2>
+  <p>Nick’s ministry is supported by prayer and by gifts from churches and friends. The Bayside Christian Education Board would love to see 500 students regularly attending Scripture classes across our three schools. You can help by giving once or monthly.</p>
+  <div class="give">
+    <p><a class="btn primary" href="https://su.org.au/donate/bayside-christian-education-board-tax-deductible/">Give online (tax deductible)</a></p>
+    <dl class="ways">
+      <div><dt>Online, by card</dt><dd>Use the button above. You can give once or set up a monthly gift.</dd></div>
+      <div><dt>Direct debit</dt><dd>Call SU NSW on <a href="tel:1300369596">1300 369 596</a> to set up a bank debit.</dd></div>
+      <div><dt>Questions about giving</dt><dd>Call <a href="tel:1300369596">1300 369 596</a> or email <a href="mailto:support@su.org.au">support@su.org.au</a>.</dd></div>
+    </dl>
+    <p class="small" style="margin-top:1rem">Donations over $2 are tax deductible and are processed by SU Australia Ministries Limited, ABN 74 009 669 569.</p>
+  </div>
+</section>
+
+<section aria-labelledby="contact-h" style="border-bottom:0">
+  <h2 id="contact-h">Get in touch</h2>
+  <div class="contact-grid">
+    <div>
+      <h3>Bayside Christian Education Board</h3>
+      <p>Our vision is to see a generation of young people coming to know Jesus within the St George area.<br>
+      <a href="mailto:baysidesre@generate.org.au">baysidesre@generate.org.au</a></p>
+    </div>
+    <div>
+      <h3>SU NSW (giving and receipts)</h3>
+      <p><a href="tel:1300369596">1300 369 596</a><br>
+      <a href="mailto:support@su.org.au">support@su.org.au</a></p>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img class="footer-logo" src="bayside-logo.png" alt="Bayside Christian Education Board logo">
+    <p>Shared by St Paul’s Anglican Church Kogarah. Information is taken from Nick’s Notes (December 2024, May 2026 and August 2026) and the Bayside Christian Education Board brochure.</p>
+  </div>
+</footer>
+</body>
+</html>
