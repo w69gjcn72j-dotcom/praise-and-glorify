@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Ministry Hub icon. G7 Design Scheme master brand: teal #1A6B7A, coral #E8724A, white.
+       A building directory: a cross above two wings of three floors each. -->
+  <rect width="512" height="512" fill="#1A6B7A"/>
+  <g fill="#FFFFFF">
+    <rect x="243" y="62" width="26" height="96" rx="4"/>
+    <rect x="212" y="86" width="88" height="24" rx="4"/>
+  </g>
+  <rect x="96" y="178" width="320" height="14" rx="7" fill="#E8724A"/>
+  <g fill="#FFFFFF">
+    <rect x="96"  y="220" width="146" height="56" rx="10"/>
+    <rect x="96"  y="300" width="146" height="56" rx="10"/>
+    <rect x="96"  y="380" width="146" height="56" rx="10"/>
+    <rect x="270" y="220" width="146" height="56" rx="10"/>
+    <rect x="270" y="300" width="146" height="56" rx="10"/>
+    <rect x="270" y="380" width="146" height="56" rx="10"/>
+  </g>
+  <g fill="#1A6B7A">
+    <circle cx="124" cy="248" r="9"/><circle cx="124" cy="328" r="9"/><circle cx="124" cy="408" r="9"/>
+    <circle cx="298" cy="248" r="9"/><circle cx="298" cy="328" r="9"/><circle cx="298" cy="408" r="9"/>
+  </g>
+</svg>
